@@ -1,0 +1,1463 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+      <title>SpotBugs (4.6.0) analysis for jpacman (spotbugsTest) of release 9.0.0</title>
+      <style type="text/css">
+         html, body, div, form {
+            margin:0px;
+            padding:0px;
+         }
+         body {
+            padding:3px;
+         }
+         a, a:link , a:active, a:visited, a:hover {
+            text-decoration: none; color: black;
+         }
+         #navlist {
+            padding: 3px 0;
+            margin-left: 0;
+            border-bottom: 1px solid #778;
+            font: bold 12px Verdana, sans-serif;
+         }
+         #navlist li {
+            list-style: none;
+            margin: 0;
+            display: inline;
+         }
+         #navlist li a {
+            padding: 3px 0.5em;
+            margin-left: 3px;
+            border: 1px solid #778;
+            border-bottom: none;
+            background: #DDE;
+            text-decoration: none;
+         }
+         #navlist li a:link { color: #448; }
+         #navlist li a:visited { color: #667; }
+         #navlist li a:hover {
+            color: #000;
+            background: #AAE;
+            border-color: #227;
+         }
+         #navlist li a.current {
+            background: white;
+            border-bottom: 1px solid white;
+         }
+         #filterWrapper {
+            margin-bottom:5px;
+         }
+         #displayWrapper {
+            margin-top:5px;
+         }
+         .message {
+            background:#BBBBBB;
+            border: 1px solid #778;
+         }
+         .displayContainer {
+            border:1px solid #555555;
+            margin-top:3px;
+            padding: 3px;
+            display:none;
+         }
+         #summaryContainer table,
+         #historyContainer table {
+            border:1px solid black;
+         }
+         #summaryContainer th,
+         #historyContainer th {
+            background: #aaaaaa;
+            color: white;
+         }
+         #summaryContainer th, #summaryContainer td,
+         #historyContainer th, #historyContainer td {
+            padding: 2px 4px 2px 4px;
+         }
+         .summary-name {
+            background: #eeeeee;
+            text-align:left;
+         }
+         .summary-size {
+            background: #eeeeee;
+            text-align:center;
+         }
+         .summary-priority-all {
+            background: #dddddd;
+            text-align:center;
+         }
+         .summary-priority-1 {
+            background: #ef2929;
+            text-align:center;
+         }
+         .summary-priority-2 {
+            background: #fcaf3e;
+            text-align:center;
+         }
+         .summary-priority-3 {
+            background: #8ae234;
+            text-align:center;
+         }
+         .summary-priority-4 {
+            background: #729fcf;
+            text-align:center;
+         }
+
+         .bugList-level1 {
+            margin-bottom:5px;
+         }
+         .bugList-level1, .bugList-level2, .bugList-level3, .bugList-level4 {
+            background-color: #ffffff;
+            margin-left:15px;
+            padding-left:10px;
+         }
+         .bugList-level1-label, .bugList-level2-label, .bugList-level3-label, .bugList-level4-label {
+            background-color: #bbbbbb;
+            border: 1px solid black;
+            padding: 1px 3px 1px 3px;
+         }
+         .bugList-level2-label, .bugList-level3-label, .bugList-level4-label {
+            border-width: 0px 1px 1px 1px;
+         }
+         .bugList-level4-label {
+            background-color: #ffffff;
+            border: 0px 0px 1px 0px;
+         }
+         .bugList-level4 {
+            border: 0px 1px 1px 1px;
+         }
+
+         .bugList-level4-inner {
+            border-style: solid;
+            border-color: black;
+            border-width: 0px 1px 1px 1px;
+         }
+         .b-r {
+            font-size: 10pt; font-weight: bold; padding: 0 0 0 60px;
+         }
+         .b-d {
+            font-weight: normal; background: #ccccc0;
+            padding: 0 5px 0 5px; margin: 0px;
+         }
+         .b-1 {
+            background: #ef2929; height: 0.5em; width: 1em;
+            margin-right: 0.5em;
+         }
+         .b-2 {
+            background: #fcaf3e; height: 0.5em; width: 1em;
+            margin-right: 0.5em;
+         }
+         .b-3 {
+            background: #8ae234; height: 0.5em; width: 1em;
+            margin-right: 0.5em;
+         }
+         .b-4 {
+            background: #729fcf; height: 0.5em; width: 1em;
+            margin-right: 0.5em;
+         }
+      </style>
+      <script type="text/javascript">
+         var menus = new Array('summary', 'info', 'history', 'listByCategories', 'listByPackages');
+
+         var state = new Proxy({
+            tab: "summary",
+            includeFixed: true,
+            release: -1,
+            priority: 4
+         }, {
+            set: function (target, name, value) {
+               target[name] = value;
+               history.replaceState(null, null, "#" + JSON.stringify(target));
+            }
+         });
+
+         var filterContainerId              = "filterWrapper";
+         var historyControlContainerId      = "historyControlWrapper";
+         var messageContainerId             = "messageContainer";
+         var summaryContainerId             = "summaryContainer";
+         var infoContainerId                = "infoContainer";
+         var historyContainerId             = "historyContainer";
+         var listByCategoriesContainerId    = "listByCategoriesContainer";
+         var listByPackagesContainerId      = "listByPackagesContainer";
+
+         // main init function
+         function init() {
+            if (versions.size <= 1) {
+               hide("historyMenu")
+            }
+            loadFilter();
+            onHashChange()
+            includeFixedIntroducedBugsInHistory();
+            window.addEventListener('hashchange', onHashChange);
+         }
+
+         function onHashChange() {
+            try {
+               var hash = location.hash.substring(1);
+               if (hash.charAt(1) != "\"") {
+                  hash = decodeURIComponent(hash);
+               }
+               var parsedState = JSON.parse(hash);
+               selectMenu(parsedState.tab);
+               var element = document.findbugsHistoryControlForm.includeFixedIntroducedBugs;
+               element.checked = parsedState.includeFixed;
+               element.onchange();
+               element = document.findbugsForm.versions;
+               element.value = (element.namedItem(parsedState.release) == null) ? state.release : parsedState.release;
+               element.onchange();
+               element = document.findbugsForm.priorities;
+               element.value = (element.namedItem(parsedState.priority) == null) ? state.priority : parsedState.priority;
+               element.onchange();
+            } catch (e) {
+               history.replaceState(null, null, "#" + JSON.stringify(state));
+            }
+         }
+
+         // menu callback function
+         function selectMenu(menuId) {
+            document.getElementById(state.tab).className="none";
+            document.getElementById(menuId).className="current";
+            if (menuId!=state.tab) {
+               hideMenu(state.tab);
+               state.tab = menuId;
+            }
+            if (menuId=="summary")           displaySummary();
+            if (menuId=="info")              displayInfo();
+            if (menuId=="history")           displayHistory();
+            if (menuId=="listByCategories")  displayListByCategories();
+            if (menuId=="listByPackages")    displayListByPackages();
+         }
+
+         // display filter
+         function loadFilter() {
+            var versionsBox = document.findbugsForm.versions;
+            versionsBox.options[0] = new Option(" -- All Releases -- ", "-1");
+            versionsBox.options[0].id = "-1";
+            versionsBox.options.selectedIndex = 0;
+            for (version of versions) {
+               var option = new Option(version[1], version[0]);
+               option.id = version[0];
+               versionsBox.options.add(option);
+            }
+            if (versions.size <= 1) {
+               versionsBox.style.display = "none";
+            }
+         }
+
+         // display a message
+         function displayMessage(msg) {
+            var container = document.getElementById(messageContainerId);
+            container.innerHTML = "<div class='message'>"+msg+"</div>";
+         }
+
+         // reset displayed message
+         function resetMessage() {
+            var container = document.getElementById(messageContainerId);
+            container.innerHTML = "";
+         }
+
+         function hideMenu(menuId) {
+            hide(menuId + "Container");
+         }
+
+         // filter callback function
+         function filter() {
+            state.release = document.findbugsForm.versions.value;
+            state.priority = document.findbugsForm.priorities.value;
+            selectMenu(state.tab);
+         }
+
+         // includeFixedBugs callback function
+         function includeFixedIntroducedBugsInHistory() {
+            state.includeFixed = document.findbugsHistoryControlForm.includeFixedIntroducedBugs.checked;
+            selectMenu(state.tab);
+         }
+
+         // display summary tab
+         function displaySummary() {
+            resetMessage();
+            hide(filterContainerId);
+            hide(historyControlContainerId);
+            var container = document.getElementById(summaryContainerId);
+            container.style.display="block";
+         }
+
+         // display info tab
+         function displayInfo() {
+            resetMessage();
+            hide(filterContainerId);
+            hide(historyControlContainerId);
+            var container = document.getElementById(infoContainerId);
+            container.style.display="block";
+         }
+
+         // display history tab
+         function displayHistory() {
+            displayMessage("Loading history...");
+            hide(filterContainerId);
+            show(historyControlContainerId);
+            var container = document.getElementById(historyContainerId);
+            var content = "";
+            var i=0;
+            var p = [0,0,0,0,0];
+            var f = [0,0,0,0,0];
+
+            content += "<table><tr><th>Release</th><th>Total Bugs</th><th>Bugs P1</th><th>Bugs P2</th><th>Bugs P3</th><th>Bugs Experimental</th></tr>";
+
+            var aSpan   = "<span title='Bugs introduced in this release that have not been fixed.'>";
+            var fSpan   = "<span title='Bugs fixed in this release.'>";
+            var fiSpan  = "<span title='Bugs introduced in this release that were fixed in later releases.'>";
+            var afiSpan = "<span title='Total number of bugs introduced in this release.'>";
+            var eSpan   = "</span>";
+
+            var versionIds = Array.from(versions.keys())
+            if(state.includeFixed) {
+               for (i=(versionIds.length-1); i>0; i--) {
+                  var versionId = versionIds[i];
+                  v = countBugsVersion(versionId, 4);
+                  t = countTotalBugsVersion(versionId);
+                  o = countFixedButActiveBugsVersion(versionId);
+                  f = countFixedBugsInVersion(versionId);
+                  fi = countFixedBugsIntroducedInVersion(versionId);
+                  content += "<tr>";
+                  content += "<td class='summary-name'>" + versions.get(versionId) + "</td>";
+                  content += "<td class='summary-priority-all'> " + (t[0] + o[0]) + " (+" + afiSpan + (v[0] + fi[0]) + eSpan +
+                        " [" + aSpan + v[0] + eSpan + " / " + fiSpan + fi[0] + eSpan + "] " + eSpan + " / -" + fSpan + f[0] + eSpan + ") </td>";
+                  content += "<td class='summary-priority-1'> " + (t[1] + o[1]) + " (+" + afiSpan + (v[1] + fi[1]) + eSpan +
+                        " [" + aSpan + v[1] + eSpan + " / " + fiSpan + fi[1] + eSpan + "] " + eSpan + " / -" + fSpan + f[1] + eSpan + ") </td>";
+                  content += "<td class='summary-priority-2'> " + (t[2] + o[2]) + " (+" + afiSpan + (v[2] + fi[2]) + eSpan +
+                        " [" + aSpan + v[2] + eSpan + " / " + fiSpan + fi[2] + eSpan + "] " + eSpan + " / -" + fSpan + f[2] + eSpan + ") </td>";
+                  content += "<td class='summary-priority-3'> " + (t[3] + o[3]) + " (+" + afiSpan + (v[3] + fi[3]) + eSpan +
+                        " [" + aSpan + v[3] + eSpan + " / " + fiSpan + fi[3] + eSpan + "] " + eSpan + " / -" + fSpan + f[3] + eSpan + ") </td>";
+                  content += "<td class='summary-priority-4'> " + (t[4] + o[4]) + " (+" + afiSpan + (v[4] + fi[4]) + eSpan +
+                        " [" + aSpan + v[4] + eSpan + " / " + fiSpan + fi[4] + eSpan + "] " + eSpan + " / -" + fSpan + f[4] + eSpan + ") </td>";
+                  content += "</tr>";
+               }
+            } else {
+               for (i=(versionIds.length-1); i>0; i--) {
+                  var versionId = versionIds[i];
+                  v = countBugsVersion(versionId, 4);
+                  t = countTotalBugsVersion(versionId);
+                  o = countFixedButActiveBugsVersion(versionId);
+                  f = countFixedBugsInVersion(versionId);
+                  content += "<tr>";
+                  content += "<td class='summary-name'>" + versions.get(versionId) + "</td>";
+                  content += "<td class='summary-priority-all'> " + (t[0] + o[0]) + " (+" + aSpan + v[0] + eSpan + " / -" + fSpan + f[0] + eSpan + ") </td>";
+                  content += "<td class='summary-priority-1'  > " + (t[1] + o[1]) + " (+" + aSpan + v[1] + eSpan + " / -" + fSpan + f[1] + eSpan + ") </td>";
+                  content += "<td class='summary-priority-2'  > " + (t[2] + o[2]) + " (+" + aSpan + v[2] + eSpan + " / -" + fSpan + f[2] + eSpan + ") </td>";
+                  content += "<td class='summary-priority-3'  > " + (t[3] + o[3]) + " (+" + aSpan + v[3] + eSpan + " / -" + fSpan + f[3] + eSpan + ") </td>";
+                  content += "<td class='summary-priority-4'  > " + (t[4] + o[4]) + " (+" + aSpan + v[4] + eSpan + " / -" + fSpan + f[4] + eSpan + ") </td>";
+                  content += "</tr>";
+               }
+            }
+
+            t = countTotalBugsVersion(versionIds[0]);
+            o = countFixedButActiveBugsVersion(versionIds[0]);
+            content += "<tr>";
+            content += "<td class='summary-name'>" + versions.get(versionIds[0]) + "</td>";
+            content += "<td class='summary-priority-all'> " + (t[0] + o[0]) + " </td>";
+            content += "<td class='summary-priority-1'  > " + (t[1] + o[1]) + " </td>";
+            content += "<td class='summary-priority-2'  > " + (t[2] + o[2]) + " </td>";
+            content += "<td class='summary-priority-3'  > " + (t[3] + o[3]) + " </td>";
+            content += "<td class='summary-priority-4'  > " + (t[4] + o[4]) + " </td>";
+            content += "</tr>";
+
+            content += "</table>";
+            container.innerHTML = content;
+            container.style.display="block";
+            resetMessage();
+         }
+
+         // display list by cat tab
+         function displayListByCategories() {
+            hide(historyControlContainerId);
+            show(filterContainerId);
+            var container = document.getElementById(listByCategoriesContainerId);
+            container.innerHTML = "";
+            container.style.display="block";
+            displayMessage("Loading stats (categories)...");
+            container.innerHTML = displayLevel1("lbc", "Stats by Bug Categories");
+            resetMessage();
+         }
+
+         // display list by package tab
+         function displayListByPackages() {
+            hide(historyControlContainerId);
+            show(filterContainerId);
+            var container = document.getElementById(listByPackagesContainerId);
+            container.style.display="block";
+            displayMessage("Loading stats (packages)...");
+            container.innerHTML = displayLevel1("lbp", "Stats by Bug Package");
+            resetMessage();
+         }
+
+         // callback function for list item click
+         function toggleList(listType, containerId, id1, id2, id3) {
+            var container = document.getElementById(containerId);
+            if (container.style.display=="block") {
+               container.style.display="none";
+            } else {
+               if (listType=="lbc") {
+                  if (id1.length>0 && id2.length==0 && id3.length==0) {
+                     displayCategoriesCodes(containerId, id1);
+                  } else if (id1.length>0 && id2.length>0 && id3.length==0) {
+                     displayCategoriesCodesPatterns(containerId, id1, id2);
+                  } else if (id1.length>0 && id2.length>0 && id3.length>0) {
+                     displayCategoriesCodesPatternsBugs(containerId, id1, id2, id3);
+                  } else {
+                     // ???
+                  }
+               } else if (listType=="lbp") {
+                  if (id1.length>0 && id2.length==0 && id3.length==0) {
+                     displayPackageCodes(containerId, id1);
+                  } else if (id1.length>0 && id2.length>0 && id3.length==0) {
+                     displayPackageClassPatterns(containerId, id1, id2);
+                  } else if (id1.length>0 && id2.length>0 && id3.length>0) {
+                     displayPackageClassPatternsBugs(containerId, id1, id2, id3);
+                  } else {
+                     // ???
+                  }
+               } else {
+                  // ????
+               }
+            }
+         }
+
+         // list by categories, display bug cat>codes
+         function displayCategoriesCodes(containerId, category) {
+            displayMessage("Loading stats (codes)...");
+            var container = document.getElementById(containerId);
+            container.style.display="block";
+            if (container.innerHTML=="Loading..." || container.innerHTML=="") {
+               container.innerHTML = displayLevel2("lbc", category);
+            }
+            resetMessage();
+         }
+
+         // list by categories, display bug package>codes
+         function displayPackageCodes(containerId, packageName) {
+            displayMessage("Loading stats (codes)...");
+            var container = document.getElementById(containerId);
+            container.style.display="block";
+            if (container.innerHTML=="Loading..." || container.innerHTML=="") {
+               container.innerHTML = displayLevel2("lbp", packageName);
+            }
+            resetMessage();
+         }
+
+         // list by categories, display bug cat>codes>patterns
+         function displayCategoriesCodesPatterns(containerId, category, code) {
+            displayMessage("Loading stats (patterns)...");
+            var container = document.getElementById(containerId);
+            container.style.display="block";
+            if (container.innerHTML=="Loading..." || container.innerHTML=="") {
+               container.innerHTML = displayLevel3("lbc", category, code);
+            }
+            resetMessage();
+         }
+
+         // list by package, display bug package>class>patterns
+         function displayPackageClassPatterns(containerId, packageName, className) {
+            displayMessage("Loading stats (patterns)...");
+            var container = document.getElementById(containerId);
+            container.style.display="block";
+            if (container.innerHTML=="Loading..." || container.innerHTML=="") {
+               container.innerHTML = displayLevel3("lbp", packageName, className);
+            }
+            resetMessage();
+         }
+
+         // list by categories, display bug cat>codes>patterns>bugs
+         function displayCategoriesCodesPatternsBugs(containerId, category, code, pattern) {
+            displayMessage("Loading stats (bugs)...");
+            var container = document.getElementById(containerId);
+            container.style.display="block";
+            if (container.innerHTML=="Loading..." || container.innerHTML=="") {
+               container.innerHTML = displayLevel4("lbc", category, code, pattern);
+            }
+            resetMessage();
+         }
+
+         // list by package, display bug package>class>patterns>bugs
+         function displayPackageClassPatternsBugs(containerId, packageName, className, pattern) {
+            displayMessage("Loading stats (bugs)...");
+            var container = document.getElementById(containerId);
+            container.style.display="block";
+            if (container.innerHTML=="Loading..." || container.innerHTML=="") {
+               container.innerHTML = displayLevel4("lbp", packageName, className, pattern);
+            }
+            resetMessage();
+         }
+
+         // generate level 1 list
+         function displayLevel1(list, title) {
+            var content = "";
+            var content2 = "";
+
+            content += "<h3>"+title+"</h3>";
+            content += getPriorityLegend();
+            content2 += "<div class='bugList'>";
+
+            var id = "";
+            var containerId = "";
+            var subContainerId = "";
+            var prefixSub = "";
+            var prefixId = "";
+            var p = [0,0,0,0,0];
+            var numberOfBugs = 0;
+            var label = "";
+            var max = 0;
+            if (list=="lbc") {
+               max = categories.length;
+            } else if (list=="lbp") {
+               max = packageStats.length;
+            }
+
+            for (var x=0; x<max; x++) {
+               if (list=="lbp" && packageStats[x].totalBugs=="0") continue;
+
+               if (list=="lbc") {
+                  id = categories[x].id;
+                  label = categories[x].label;
+                  containerId = "categories-" + id;
+                  subContainerId = "cat-"+id;
+                  p = countBugsCat(state.release, state.priority, id);
+               }
+               if (list=="lbp") {
+                  id = packageStats[x].packageName;
+                  label = packageStats[x].packageName;
+                  containerId = "packages-" + id;
+                  subContainerId = "package-"+id;
+                  p = countBugsPackage(state.release, state.priority, id);
+               }
+
+               subContainerId = prefixSub+id;
+
+               var total = p[1]+p[2]+p[3]+p[4];
+               if (total > 0) {
+                  content2 += addListItem( 1, containerId, label, total, p, subContainerId,
+                                          "toggleList('" + list + "', '" + subContainerId + "', '"+ id + "', '', '')"
+                                          );
+               }
+               numberOfBugs += total;
+            }
+            content2 += "</div>";
+            content += "<h4>Total number of bugs";
+            if (state.release!=-1) {
+               content += " (introduced in release " + versions.get(state.release) +")";
+            }
+            content += ": "+numberOfBugs+"</h4>";
+            return content+content2;
+         }
+
+         // generate level 2 list
+         function displayLevel2(list, id1) {
+            var content = "";
+            var code = "";
+            var containerId = "";
+            var subContainerId = "";
+            var p = [0,0,0,0,0];
+            var max = 0;
+            var id2 = "";
+            if (list=="lbc") {
+               max = codes.length;
+            } else if (list=="lbp") {
+               max = classStats.length;
+            }
+
+            for (var x=0; x<max; x++) {
+               if (list=="lbp" && classStats[x].totalBugs=="0") continue;
+
+               if (list=="lbc") {
+                  id2 = codes[x].id;
+                  label = codes[x].label;
+                  containerId = "codes-"+id1;
+                  subContainerId = "cat-" + id1 + "-code-" + id2;
+                  p = countBugsCode(state.release, state.priority, id1, id2);
+               }
+               if (list=="lbp") {
+                  id2 = classStats[x].className;
+                  label = classStats[x].className;
+                  containerId = "packages-"+id1;
+                  subContainerId = "package-" + id1 + "-class-" + id2;
+                  p = countBugsClass(state.release, state.priority, id1, id2);
+               }
+
+               var total = p[1]+p[2]+p[3]+p[4];
+               if (total > 0) {
+                  content += addListItem( 2, containerId, label, total, p, subContainerId,
+                                          "toggleList('"+ list + "', '" + subContainerId + "', '"+ id1 + "', '"+ id2 + "', '')"
+                                          );
+               }
+            }
+            return content;
+         }
+
+         // generate level 3 list
+         function displayLevel3(list, id1, id2) {
+            var content = "";
+            var containerId = "";
+            var subContainerId = "";
+            var p = [0,0,0,0,0];
+            var max = 0;
+            var label = "";
+            var id3 = "";
+
+            if ((list=="lbc") || (list=="lbp")) {
+               max = patterns.length;
+            }
+
+            for (var x=0; x<max; x++) {
+               if (list=="lbc") {
+                  id3 = patterns[x].id;
+                  label = patterns[x].label + " ( " + id3 + " )";
+                  containerId = "patterns-"+id1;
+                  subContainerId = "cat-" + id1 + "-code-" + id2 + "-pattern-" + id3;
+                  p = countBugsPattern(state.release, state.priority, id1, id2, id3);
+               }
+               if (list=="lbp") {
+                  id3 = patterns[x].id;
+                  label = patterns[x].label + " ( " + id3 + " )";
+                  containerId = "classpatterns-"+id1;
+                  subContainerId = "package-" + id1 + "-class-" + id2 + "-pattern-" + id3;
+                  p = countBugsClassPattern(state.release, state.priority, id2, id3);
+               }
+
+               var total = p[1]+p[2]+p[3]+p[4];
+               if (total > 0) {
+                  content += addListItem( 3, containerId, label, total, p, subContainerId,
+                                          "toggleList('" + list + "', '" + subContainerId + "', '"+ id1 + "', '"+ id2 + "', '"+ id3 + "')"
+                                          );
+               }
+            }
+            return content;
+         }
+
+         // generate level 4 list
+         function displayLevel4(list, id1, id2, id3) {
+            var content = "";
+            var bug = "";
+            var bugP = 0;
+            var containerId = "";
+            var subContainerId = "";
+            var bugId = "";
+            var label = "";
+            var p = [0,0,0,0,0];
+            for (bug of bugs) {
+               if (list=="lbc") {
+                  if ( bug.category!=id1 || bug.code!=id2 || bug.pattern!=id3 ) continue;
+                  if ( state.release!=-1
+                     && state.release!=bug.firstVersion) continue;
+                  if ( state.priority!=4
+                     && state.priority<bug.priority) continue;
+
+                  subContainerId = "cat-" + id1 + "-code-" + id2 + "-pattern-" + id3 + "-bug-" + bug.id;
+               }
+               if (list=="lbp") {
+                  if ( bug.packageName!=id1 || bug.className!=id2 || bug.pattern!=id3 ) continue;
+                  if ( state.release!=-1
+                     && state.release!=bug.firstVersion) continue;
+                  if ( state.priority!=4
+                     && state.priority<bug.priority) continue;
+
+                  subContainerId = "package-" + id1 + "-class-" + id2 + "-pattern-" + id3 + "-bug-" + bug.id;
+               }
+
+               bugId = "b-uid-" + bug.id;
+               label = bug.className;
+               containerId = "bugs-"+bugId;
+               bugP = bug.priority;
+               p[bugP]++;
+               var total = p[1]+p[2]+p[3]+p[4];
+               if (total > 0) {
+                  content += addBug(   4, containerId, label, bugP, bug.firstVersion, subContainerId,
+                                       "showbug('" + bugId + "', '" + subContainerId + "', '"+id3+"')");
+               }
+            }
+            return content;
+         }
+
+
+         function addListItem(level, id, label, total, p, subId, onclick) {
+            var content = "";
+
+            content += "<div class='bugList-level"+level+"' >";
+            content += "<div class='bugList-level"+level+"-label' id='"+id+"' >";
+            content += "<a href='' onclick=\"" + onclick + ";return false;\" ";
+            content += ">";
+            content += "<strong>"+label+"</strong>";
+            content += " "+total+" bugs";
+            if (state.priority>1)
+               content += " <em>("+p[1];
+            if (state.priority>=2)
+               content += "/"+p[2];
+            if (state.priority>=3)
+               content += "/"+p[3];
+            if (state.priority>=4)
+               content += "/"+p[4];
+            if (state.priority>1)
+               content += ")</em>";
+            content += "</a>";
+            content += "</div>";
+            content += "<div class='bugList-level"+level+"-inner' id='"+subId+"' style='display:none;'>Loading...</div>";
+            content += "</div>";
+            return content;
+         }
+
+         function addBug( level, id, label, p, version, subId, onclick) {
+            var content = "";
+
+            content += "<div class='bugList-level" + level + "' id='" + id + "'>";
+            content += "<div class='bugList-level" + level + "-label' id='" + id + "'>";
+            content += "<span class='b-" + p + "'>&nbsp;&nbsp;&nbsp;</span>";
+            content += "<a href='' onclick=\"" + onclick + ";return false;\">";
+            if ((versions.size>1) && (version==lastVersion)) {
+               content += "<span style='color:#ef2929;font-weight:bold;'>NEW!</span> ";
+            }
+            content += "<strong>" + label + "</strong>";
+            if (version==0) {
+               content += " <em>since first historized release " + versions.get(version.toString()) + "</em>";
+            } else {
+               content += " <em>since release " + versions.get(version.toString()) + "</em>";
+            }
+            content += "</a>";
+            content += "</div>";
+            content += "<div class='bugList-level" + level + "-inner' id='" + subId + "' style='display:none;'>Loading...</div>";
+            content += "</div>";
+            return content;
+         }
+
+         function countBugsVersion(version, priority) {
+            return countBugs(version, priority, null, null, null, null, null);
+         }
+
+         function countBugsCat(version, priority, category) {
+            return countBugs(version, priority, category, null, null, null, null);
+         }
+
+         function countBugsPackage(version, priority, packageName) {
+            return countBugs(version, priority, null, null, null, packageName, null);
+         }
+
+         function countBugsCode(version, priority, category, code) {
+            return countBugs(version, priority, category, code, null, null, null);
+         }
+
+         function countBugsPattern(version, priority, category, code, pattern) {
+            return countBugs(version, priority, category, code, pattern, null, null);
+         }
+
+         function countBugsClass(version, priority, packageName, className) {
+            return countBugs(version, priority, null, null, null, packageName, className);
+         }
+
+         function countBugsClassPattern(version, priority, className, pattern) {
+            return countBugs(version, priority, null, null, pattern, null, className);
+         }
+
+         function countBugs(version, priority, category, code, pattern, packageName, className) {
+            var count = [0,0,0,0,0];
+            for (bug of bugs) {
+               if (     (version==-1  || version==bug.firstVersion)
+                     && (priority==4  || priority>=bug.priority)
+                     && (!category    || bug.category==category)
+                     && (!code        || bug.code==code)
+                     && (!pattern     || bug.pattern==pattern)
+                     && (!packageName || bug.packageName==packageName)
+                     && (!className   || bug.className==className)
+                     ) {
+                  count[bug.priority]++;
+               }
+            }
+            count[0] = count[1] + count[2] + count[3] + count[4];
+            return count;
+         }
+
+         function countFixedBugsInVersion(version) {
+            var count = [0,0,0,0,0];
+            var last=1000000;
+            for (bug of fixedBugs) {
+               if (version==-1 || version==(bug.lastVersion+1)) {
+                  count[bug.priority]++;
+               }
+            }
+            count[0] = count[1] + count[2] + count[3] + count[4];
+            return count;
+         }
+
+         function countFixedBugsIntroducedInVersion(version) {
+            var count = [0,0,0,0,0];
+            var last=1000000;
+            for (bug of fixedBugs) {
+               if (version==-1 || version==(bug.firstVersion)) {
+                  count[bug.priority]++;
+               }
+            }
+            count[0] = count[1] + count[2] + count[3] + count[4];
+            return count;
+         }
+
+         function countFixedButActiveBugsVersion(version) {
+            var count = [0,0,0,0,0];
+            var last=1000000;
+            for (bug of fixedBugs) {
+               if ( version==-1 || (version >=bug.firstVersion && version<=bug.lastVersion) ) {
+                  count[bug.priority]++;
+               }
+            }
+            count[0] = count[1] + count[2] + count[3] + count[4];
+            return count;
+         }
+
+         function countTotalBugsVersion(version) {
+            var count = [0,0,0,0,0];
+            var last=1000000;
+            for (bug of bugs) {
+               if (version==-1 || version>=bug.firstVersion) {
+                  count[bug.priority]++;
+               }
+            }
+            count[0] = count[1] + count[2] + count[3] + count[4];
+            return count;
+         }
+
+         function getPriorityLegend() {
+            var content = "";
+            content += "<h5><span class='b-1'>&nbsp;&nbsp;&nbsp;</span>P1&nbsp;&nbsp;&nbsp;";
+            content += "<span class='b-2'>&nbsp;&nbsp;&nbsp;</span>P2&nbsp;&nbsp;&nbsp;";
+            content += "<span class='b-3'>&nbsp;&nbsp;&nbsp;</span>P3&nbsp;&nbsp;&nbsp;";
+            content += "<span class='b-4'>&nbsp;&nbsp;&nbsp;</span>Experimental";
+            content += "</h5>";
+            return content;
+         }
+
+         function showbug(bugId, containerId, pattern) {
+            var bugplaceholder   = document.getElementById(containerId);
+            var bug              = document.getElementById(bugId);
+
+            if ( bugplaceholder==null) {
+               alert(buguid+'-ph-'+list+' - '+buguid+' - bugplaceholder==null');
+               return;
+            }
+            if ( bug==null) {
+               alert(buguid+'-ph-'+list+' - '+buguid+' - bug==null');
+               return;
+            }
+
+            var newBug = bug.innerHTML;
+            var pattern = document.getElementById('tip-'+pattern).innerHTML;
+            toggle(containerId);
+            bugplaceholder.innerHTML = newBug + pattern;
+         }
+         function toggle(containerId) {
+            if( document.getElementById(containerId).style.display == "none") {
+               show(containerId);
+            } else {
+               if( document.getElementById(containerId).style.display == "block") {
+                  hide(containerId);
+               } else {
+                  show(containerId);
+               }
+            }
+         }
+         function show(containerId) {
+            document.getElementById(containerId).style.display="block";
+         }
+         function hide(containerId) {
+            document.getElementById(containerId).style.display="none";
+         }
+
+         window.onload = function(){
+            init();
+         };
+
+         var lastVersion = "0";
+
+         // versions fields: release id, release label
+         var versions = new Map([
+               ["0", "9.0.0"]
+         ]);
+
+         var categories = new Array(
+               {id: "BAD_PRACTICE", label: "Bad practice"},
+               {id: "STYLE", label: "Dodgy code"}
+         );
+
+         var codes = new Array(
+               {id: "Nm", label: "Confusing method name"},
+               {id: "UwF", label: "Unwritten field"}
+         );
+
+         var patterns = new Array(
+               {category: "BAD_PRACTICE", code: "Nm", id: "NM_CONFUSING", label: "Confusing method names"},
+               {category: "STYLE", code: "UwF", id: "UWF_FIELD_NOT_INITIALIZED_IN_CONSTRUCTOR", label: "Field not initialized in constructor but dereferenced without null check"}
+         );
+
+         var classStats = new Array(
+               {className: "nl.tudelft.jpacman.board.BasicSquare", packageName: "nl.tudelft.jpacman.board", isInterface: "false", totalBugs: "0", bugsP1: "0", bugsP2: "0", bugsP3: "0", bugsP4: "0"},
+               {className: "nl.tudelft.jpacman.board.BasicUnit", packageName: "nl.tudelft.jpacman.board", isInterface: "false", totalBugs: "0", bugsP1: "0", bugsP2: "0", bugsP3: "0", bugsP4: "0"},
+               {className: "nl.tudelft.jpacman.board.BoardWithinBordersTest", packageName: "nl.tudelft.jpacman.board", isInterface: "false", totalBugs: "0", bugsP1: "0", bugsP2: "0", bugsP3: "0", bugsP4: "0"},
+               {className: "nl.tudelft.jpacman.board.DirectionTest", packageName: "nl.tudelft.jpacman.board", isInterface: "false", totalBugs: "0", bugsP1: "0", bugsP2: "0", bugsP3: "0", bugsP4: "0"},
+               {className: "nl.tudelft.jpacman.board.OccupantTest", packageName: "nl.tudelft.jpacman.board", isInterface: "false", totalBugs: "4", bugsP1: "0", bugsP2: "0", bugsP3: "4", bugsP4: "0"},
+               {className: "nl.tudelft.jpacman.e2e.framework.startup.MovePlayerSteps", packageName: "nl.tudelft.jpacman.e2e.framework.startup", isInterface: "false", totalBugs: "6", bugsP1: "0", bugsP2: "0", bugsP3: "6", bugsP4: "0"},
+               {className: "nl.tudelft.jpacman.e2e.framework.startup.StartGameSteps", packageName: "nl.tudelft.jpacman.e2e.framework.startup", isInterface: "false", totalBugs: "2", bugsP1: "0", bugsP2: "0", bugsP3: "2", bugsP4: "0"},
+               {className: "nl.tudelft.jpacman.e2e.framework.startup.StartupCnSteps", packageName: "nl.tudelft.jpacman.e2e.framework.startup", isInterface: "false", totalBugs: "2", bugsP1: "0", bugsP2: "0", bugsP3: "2", bugsP4: "0"},
+               {className: "nl.tudelft.jpacman.e2e.framework.suspension.ResumeSteps", packageName: "nl.tudelft.jpacman.e2e.framework.suspension", isInterface: "false", totalBugs: "2", bugsP1: "0", bugsP2: "0", bugsP3: "2", bugsP4: "0"},
+               {className: "nl.tudelft.jpacman.e2e.framework.suspension.SuspensionSteps", packageName: "nl.tudelft.jpacman.e2e.framework.suspension", isInterface: "false", totalBugs: "3", bugsP1: "0", bugsP2: "0", bugsP3: "3", bugsP4: "0"}
+         );
+
+         var packageStats = new Array(
+               {packageName: "nl.tudelft.jpacman.board", totalBugs: "4", bugsP1: "0", bugsP2: "0", bugsP3: "4", bugsP4: "0"},
+               {packageName: "nl.tudelft.jpacman.e2e.framework.startup", totalBugs: "10", bugsP1: "0", bugsP2: "0", bugsP3: "10", bugsP4: "0"},
+               {packageName: "nl.tudelft.jpacman.e2e.framework.suspension", totalBugs: "5", bugsP1: "0", bugsP2: "0", bugsP3: "5", bugsP4: "0"}
+         );
+
+         var bugs = new Array(
+               {
+                  id: "5829688b1b4ba7cfa7d8939736590bad-0",
+                  category: "BAD_PRACTICE",
+                  code: "Nm",
+                  pattern: "NM_CONFUSING",
+                  priority: 3,
+                  firstVersion: 0,
+                  className: "nl.tudelft.jpacman.board.OccupantTest",
+                  packageName: "nl.tudelft.jpacman.board"
+               },
+               {
+                  id: "6773ba6bb1b1e25a7eaaf765104b6d81-0",
+                  category: "STYLE",
+                  code: "UwF",
+                  pattern: "UWF_FIELD_NOT_INITIALIZED_IN_CONSTRUCTOR",
+                  priority: 3,
+                  firstVersion: 0,
+                  className: "nl.tudelft.jpacman.board.OccupantTest",
+                  packageName: "nl.tudelft.jpacman.board"
+               },
+               {
+                  id: "80ddea8d4b17ffe81e4265f71bc3d909-0",
+                  category: "STYLE",
+                  code: "UwF",
+                  pattern: "UWF_FIELD_NOT_INITIALIZED_IN_CONSTRUCTOR",
+                  priority: 3,
+                  firstVersion: 0,
+                  className: "nl.tudelft.jpacman.board.OccupantTest",
+                  packageName: "nl.tudelft.jpacman.board"
+               },
+               {
+                  id: "6464bbc27a2a9c9b1925cee469cb9d73-0",
+                  category: "STYLE",
+                  code: "UwF",
+                  pattern: "UWF_FIELD_NOT_INITIALIZED_IN_CONSTRUCTOR",
+                  priority: 3,
+                  firstVersion: 0,
+                  className: "nl.tudelft.jpacman.board.OccupantTest",
+                  packageName: "nl.tudelft.jpacman.board"
+               },
+               {
+                  id: "3777706c267785b1295e1a6d5ba68301-0",
+                  category: "STYLE",
+                  code: "UwF",
+                  pattern: "UWF_FIELD_NOT_INITIALIZED_IN_CONSTRUCTOR",
+                  priority: 3,
+                  firstVersion: 0,
+                  className: "nl.tudelft.jpacman.e2e.framework.startup.MovePlayerSteps",
+                  packageName: "nl.tudelft.jpacman.e2e.framework.startup"
+               },
+               {
+                  id: "f4a7da9fd6c5d76ea23936cddd83dcad-0",
+                  category: "STYLE",
+                  code: "UwF",
+                  pattern: "UWF_FIELD_NOT_INITIALIZED_IN_CONSTRUCTOR",
+                  priority: 3,
+                  firstVersion: 0,
+                  className: "nl.tudelft.jpacman.e2e.framework.startup.MovePlayerSteps",
+                  packageName: "nl.tudelft.jpacman.e2e.framework.startup"
+               },
+               {
+                  id: "2385ba68d995b71d0ad36a6da8bd4948-0",
+                  category: "STYLE",
+                  code: "UwF",
+                  pattern: "UWF_FIELD_NOT_INITIALIZED_IN_CONSTRUCTOR",
+                  priority: 3,
+                  firstVersion: 0,
+                  className: "nl.tudelft.jpacman.e2e.framework.startup.MovePlayerSteps",
+                  packageName: "nl.tudelft.jpacman.e2e.framework.startup"
+               },
+               {
+                  id: "c6832832c027cd2b3aa20bdefc29218a-0",
+                  category: "STYLE",
+                  code: "UwF",
+                  pattern: "UWF_FIELD_NOT_INITIALIZED_IN_CONSTRUCTOR",
+                  priority: 3,
+                  firstVersion: 0,
+                  className: "nl.tudelft.jpacman.e2e.framework.startup.MovePlayerSteps",
+                  packageName: "nl.tudelft.jpacman.e2e.framework.startup"
+               },
+               {
+                  id: "1cd6e12ad4f1958531bba18a2219cbd0-0",
+                  category: "STYLE",
+                  code: "UwF",
+                  pattern: "UWF_FIELD_NOT_INITIALIZED_IN_CONSTRUCTOR",
+                  priority: 3,
+                  firstVersion: 0,
+                  className: "nl.tudelft.jpacman.e2e.framework.startup.MovePlayerSteps",
+                  packageName: "nl.tudelft.jpacman.e2e.framework.startup"
+               },
+               {
+                  id: "2de6807f8bcb50740011fcf82c4e37d1-0",
+                  category: "STYLE",
+                  code: "UwF",
+                  pattern: "UWF_FIELD_NOT_INITIALIZED_IN_CONSTRUCTOR",
+                  priority: 3,
+                  firstVersion: 0,
+                  className: "nl.tudelft.jpacman.e2e.framework.startup.MovePlayerSteps",
+                  packageName: "nl.tudelft.jpacman.e2e.framework.startup"
+               },
+               {
+                  id: "9d5d86aef47a7e8073a3d5a5730d2bd6-0",
+                  category: "STYLE",
+                  code: "UwF",
+                  pattern: "UWF_FIELD_NOT_INITIALIZED_IN_CONSTRUCTOR",
+                  priority: 3,
+                  firstVersion: 0,
+                  className: "nl.tudelft.jpacman.e2e.framework.startup.StartGameSteps",
+                  packageName: "nl.tudelft.jpacman.e2e.framework.startup"
+               },
+               {
+                  id: "bc49274c322711ee30d0ad06139ae792-0",
+                  category: "STYLE",
+                  code: "UwF",
+                  pattern: "UWF_FIELD_NOT_INITIALIZED_IN_CONSTRUCTOR",
+                  priority: 3,
+                  firstVersion: 0,
+                  className: "nl.tudelft.jpacman.e2e.framework.startup.StartGameSteps",
+                  packageName: "nl.tudelft.jpacman.e2e.framework.startup"
+               },
+               {
+                  id: "e53442fa7eca40789d0898757501981d-0",
+                  category: "STYLE",
+                  code: "UwF",
+                  pattern: "UWF_FIELD_NOT_INITIALIZED_IN_CONSTRUCTOR",
+                  priority: 3,
+                  firstVersion: 0,
+                  className: "nl.tudelft.jpacman.e2e.framework.startup.StartupCnSteps",
+                  packageName: "nl.tudelft.jpacman.e2e.framework.startup"
+               },
+               {
+                  id: "a42371ced3ddb1bae7be9b73308a9ef6-0",
+                  category: "STYLE",
+                  code: "UwF",
+                  pattern: "UWF_FIELD_NOT_INITIALIZED_IN_CONSTRUCTOR",
+                  priority: 3,
+                  firstVersion: 0,
+                  className: "nl.tudelft.jpacman.e2e.framework.startup.StartupCnSteps",
+                  packageName: "nl.tudelft.jpacman.e2e.framework.startup"
+               },
+               {
+                  id: "65c5318377a7aaf11ac7f2cab3d6cd0c-0",
+                  category: "STYLE",
+                  code: "UwF",
+                  pattern: "UWF_FIELD_NOT_INITIALIZED_IN_CONSTRUCTOR",
+                  priority: 3,
+                  firstVersion: 0,
+                  className: "nl.tudelft.jpacman.e2e.framework.suspension.ResumeSteps",
+                  packageName: "nl.tudelft.jpacman.e2e.framework.suspension"
+               },
+               {
+                  id: "9e4a0793eb18c5c1bae8d5316191a247-0",
+                  category: "STYLE",
+                  code: "UwF",
+                  pattern: "UWF_FIELD_NOT_INITIALIZED_IN_CONSTRUCTOR",
+                  priority: 3,
+                  firstVersion: 0,
+                  className: "nl.tudelft.jpacman.e2e.framework.suspension.ResumeSteps",
+                  packageName: "nl.tudelft.jpacman.e2e.framework.suspension"
+               },
+               {
+                  id: "99c417d3d9f935189a1a9ab48e6c7257-0",
+                  category: "STYLE",
+                  code: "UwF",
+                  pattern: "UWF_FIELD_NOT_INITIALIZED_IN_CONSTRUCTOR",
+                  priority: 3,
+                  firstVersion: 0,
+                  className: "nl.tudelft.jpacman.e2e.framework.suspension.SuspensionSteps",
+                  packageName: "nl.tudelft.jpacman.e2e.framework.suspension"
+               },
+               {
+                  id: "1f89ddf28ebc4b350800453a0137f7e3-0",
+                  category: "STYLE",
+                  code: "UwF",
+                  pattern: "UWF_FIELD_NOT_INITIALIZED_IN_CONSTRUCTOR",
+                  priority: 3,
+                  firstVersion: 0,
+                  className: "nl.tudelft.jpacman.e2e.framework.suspension.SuspensionSteps",
+                  packageName: "nl.tudelft.jpacman.e2e.framework.suspension"
+               },
+               {
+                  id: "57b985c320515636046e66796861e080-0",
+                  category: "STYLE",
+                  code: "UwF",
+                  pattern: "UWF_FIELD_NOT_INITIALIZED_IN_CONSTRUCTOR",
+                  priority: 3,
+                  firstVersion: 0,
+                  className: "nl.tudelft.jpacman.e2e.framework.suspension.SuspensionSteps",
+                  packageName: "nl.tudelft.jpacman.e2e.framework.suspension"
+               }
+         );
+
+         var fixedBugs = new Array(
+         );
+      </script>
+   </head>
+   <body>
+      <h3>
+         <a href="https://spotbugs.github.io">SpotBugs</a> (4.6.0) analysis for jpacman (spotbugsTest) of release 9.0.0</h3>
+      <div id="menuWrapper">
+         <div id="navcontainer">
+            <ul id="navlist">
+               <li>
+                  <a id="summary"
+                     class="current"
+                     href="#summaryTab"
+                     onclick="selectMenu('summary'); return false;">Summary</a>
+               </li>
+               <li id="historyMenu">
+                  <a id="history"
+                     class="none"
+                     href="#historyTab"
+                     onclick="selectMenu('history'); return false;">History</a>
+               </li>
+               <li>
+                  <a id="listByCategories"
+                     class="none"
+                     href="#listByCategoriesTab"
+                     onclick="selectMenu('listByCategories'); return false;">Browse By Categories</a>
+               </li>
+               <li>
+                  <a id="listByPackages"
+                     class="none"
+                     href="#listByPackagesTab"
+                     onclick="selectMenu('listByPackages'); return false;">Browse by Packages</a>
+               </li>
+               <li>
+                  <a id="info"
+                     class="none"
+                     href="#infoTab"
+                     onclick="selectMenu('info'); return false;">Info</a>
+               </li>
+            </ul>
+         </div>
+      </div>
+      <div id="displayWrapper">
+         <div style="height:25px;">
+            <div id="messageContainer" style="float:right;">
+            Computing data...
+         </div>
+            <div id="filterWrapper" style="display:none;">
+               <form name="findbugsForm">
+                  <div id="filterContainer">
+                     <select name="versions" onchange="filter()">
+                        <option value="loading">Loading filter...</option>
+                     </select>
+                     <select name="priorities" onchange="filter()">
+                        <option id="4" value="4"> -- All priorities -- </option>
+                        <option id="1" value="1"> P1 bugs </option>
+                        <option id="2" value="2"> P1 and P2 bugs </option>
+                        <option id="3" value="3"> P1, P2 and P3 bugs </option>
+                     </select>
+                  </div>
+               </form>
+            </div>
+            <div id="historyControlWrapper" style="display:none;">
+               <form name="findbugsHistoryControlForm">
+                  <div id="historyControlContainer">
+                     <input type="checkbox"
+                            name="includeFixedIntroducedBugs"
+                            value="checked"
+                            alt="Include fixed introduced bugs."
+                            onchange="includeFixedIntroducedBugsInHistory()"/>
+                  Include counts of introduced bugs that were fixed in later releases.
+               </div>
+               </form>
+            </div>
+         </div>
+         <div id="summaryContainer" class="displayContainer">
+            <h3>Package Summary</h3>
+            <table>
+               <tr>
+                  <th>Package</th>
+                  <th>Code Size</th>
+                  <th>Total Bugs</th>
+                  <th>Bugs P1</th>
+                  <th>Bugs P2</th>
+                  <th>Bugs P3</th>
+                  <th>Bugs Experimental</th>
+               </tr>
+               <tr>
+                  <td class="summary-name">Overall (3 packages, 10 classes)</td>
+                  <td class="summary-size">211</td>
+                  <td class="summary-priority-all">19</td>
+                  <td class="summary-priority-1">0</td>
+                  <td class="summary-priority-2">0</td>
+                  <td class="summary-priority-3">19</td>
+                  <td class="summary-priority-4">0</td>
+               </tr>
+               <tr>
+                  <td class="summary-name">nl.tudelft.jpacman.board</td>
+                  <td class="summary-size">80</td>
+                  <td class="summary-priority-all">4</td>
+                  <td class="summary-priority-1">0</td>
+                  <td class="summary-priority-2">0</td>
+                  <td class="summary-priority-3">4</td>
+                  <td class="summary-priority-4">0</td>
+               </tr>
+               <tr>
+                  <td class="summary-name">nl.tudelft.jpacman.e2e.framework.startup</td>
+                  <td class="summary-size">85</td>
+                  <td class="summary-priority-all">10</td>
+                  <td class="summary-priority-1">0</td>
+                  <td class="summary-priority-2">0</td>
+                  <td class="summary-priority-3">10</td>
+                  <td class="summary-priority-4">0</td>
+               </tr>
+               <tr>
+                  <td class="summary-name">nl.tudelft.jpacman.e2e.framework.suspension</td>
+                  <td class="summary-size">46</td>
+                  <td class="summary-priority-all">5</td>
+                  <td class="summary-priority-1">0</td>
+                  <td class="summary-priority-2">0</td>
+                  <td class="summary-priority-3">5</td>
+                  <td class="summary-priority-4">0</td>
+               </tr>
+            </table>
+         </div>
+         <div id="infoContainer" class="displayContainer">
+            <div id="analyzed-files">
+               <h3>Analyzed Files:</h3>
+               <ul>
+                  <li>C:\Users\Stewart\Documents\Git\SoftwareTesting\jpacman-ctgu\build\classes\java\test\nl\tudelft\jpacman\board\BasicSquare.class</li>
+                  <li>C:\Users\Stewart\Documents\Git\SoftwareTesting\jpacman-ctgu\build\classes\java\test\nl\tudelft\jpacman\board\BasicUnit.class</li>
+                  <li>C:\Users\Stewart\Documents\Git\SoftwareTesting\jpacman-ctgu\build\classes\java\test\nl\tudelft\jpacman\board\BoardWithinBordersTest.class</li>
+                  <li>C:\Users\Stewart\Documents\Git\SoftwareTesting\jpacman-ctgu\build\classes\java\test\nl\tudelft\jpacman\board\DirectionTest.class</li>
+                  <li>C:\Users\Stewart\Documents\Git\SoftwareTesting\jpacman-ctgu\build\classes\java\test\nl\tudelft\jpacman\board\OccupantTest.class</li>
+                  <li>C:\Users\Stewart\Documents\Git\SoftwareTesting\jpacman-ctgu\build\classes\java\test\nl\tudelft\jpacman\e2e\framework\startup\MovePlayerSteps.class</li>
+                  <li>C:\Users\Stewart\Documents\Git\SoftwareTesting\jpacman-ctgu\build\classes\java\test\nl\tudelft\jpacman\e2e\framework\startup\StartGameSteps.class</li>
+                  <li>C:\Users\Stewart\Documents\Git\SoftwareTesting\jpacman-ctgu\build\classes\java\test\nl\tudelft\jpacman\e2e\framework\startup\StartupCnSteps.class</li>
+                  <li>C:\Users\Stewart\Documents\Git\SoftwareTesting\jpacman-ctgu\build\classes\java\test\nl\tudelft\jpacman\e2e\framework\suspension\ResumeSteps.class</li>
+                  <li>C:\Users\Stewart\Documents\Git\SoftwareTesting\jpacman-ctgu\build\classes\java\test\nl\tudelft\jpacman\e2e\framework\suspension\SuspensionSteps.class</li>
+               </ul>
+            </div>
+            <div id="used-libraries">
+               <h3>Used Libraries:</h3>
+               <ul>
+                  <li>C:\Users\Stewart\.gradle\caches\modules-2\files-2.1\com.google.code.findbugs\jsr305\3.0.2\25ea2e8b0c338a877313bd4672d3fe056ea78f0d\jsr305-3.0.2.jar</li>
+                  <li>C:\Users\Stewart\.gradle\caches\modules-2\files-2.1\com.google.errorprone\error_prone_annotations\2.5.1\562d366678b89ce5d6b6b82c1a073880341e3fba\error_prone_annotations-2.5.1.jar</li>
+                  <li>C:\Users\Stewart\.gradle\caches\modules-2\files-2.1\com.google.guava\failureaccess\1.0.1\1dcf1de382a0bf95a3d8b0849546c88bac1292c9\failureaccess-1.0.1.jar</li>
+                  <li>C:\Users\Stewart\.gradle\caches\modules-2\files-2.1\com.google.guava\guava\30.1.1-jre\87e0fd1df874ea3cbe577702fe6f17068b790fd8\guava-30.1.1-jre.jar</li>
+                  <li>C:\Users\Stewart\.gradle\caches\modules-2\files-2.1\com.google.guava\listenablefuture\9999.0-empty-to-avoid-conflict-with-guava\b421526c5f297295adef1c886e5246c39d4ac629\listenablefuture-9999.0-empty-to-avoid-conflict-with-guava.jar</li>
+                  <li>C:\Users\Stewart\.gradle\caches\modules-2\files-2.1\com.google.j2objc\j2objc-annotations\1.3\ba035118bc8bac37d7eff77700720999acd9986d\j2objc-annotations-1.3.jar</li>
+                  <li>C:\Users\Stewart\.gradle\caches\modules-2\files-2.1\io.cucumber\create-meta\6.0.1\4c631e8d4628b7a27cf11c56c0b71c0d676e353e\create-meta-6.0.1.jar</li>
+                  <li>C:\Users\Stewart\.gradle\caches\modules-2\files-2.1\io.cucumber\cucumber-core\7.0.0\2ca35e8c0a4e1829f3a5317e8bad7dcc74bd48c0\cucumber-core-7.0.0.jar</li>
+                  <li>C:\Users\Stewart\.gradle\caches\modules-2\files-2.1\io.cucumber\cucumber-expressions\13.0.1\c555028da3c4733085640bd341699007ff162931\cucumber-expressions-13.0.1.jar</li>
+                  <li>C:\Users\Stewart\.gradle\caches\modules-2\files-2.1\io.cucumber\cucumber-gherkin-messages\7.0.0\89798cb608279ca876af22d85390853d5a4432f\cucumber-gherkin-messages-7.0.0.jar</li>
+                  <li>C:\Users\Stewart\.gradle\caches\modules-2\files-2.1\io.cucumber\cucumber-gherkin\7.0.0\a8e075b121145d8e8c5402523da3456f87d8a7cf\cucumber-gherkin-7.0.0.jar</li>
+                  <li>C:\Users\Stewart\.gradle\caches\modules-2\files-2.1\io.cucumber\cucumber-java\7.0.0\5e1bdd33ff932e28280e9f934889de295bd5868b\cucumber-java-7.0.0.jar</li>
+                  <li>C:\Users\Stewart\.gradle\caches\modules-2\files-2.1\io.cucumber\cucumber-junit\7.0.0\508c79b29168c45534672d1f3f3f65b9adb053dd\cucumber-junit-7.0.0.jar</li>
+                  <li>C:\Users\Stewart\.gradle\caches\modules-2\files-2.1\io.cucumber\cucumber-plugin\7.0.0\4e2475d16766fbc86af5617cb25ea5f1e36b0ed\cucumber-plugin-7.0.0.jar</li>
+                  <li>C:\Users\Stewart\.gradle\caches\modules-2\files-2.1\io.cucumber\datatable\7.0.0\d14bb4fb5da7a5741c65959af32a1c3d3691d864\datatable-7.0.0.jar</li>
+                  <li>C:\Users\Stewart\.gradle\caches\modules-2\files-2.1\io.cucumber\docstring\7.0.0\de52269df08fb9713a8cfce850419b5b40c4aacb\docstring-7.0.0.jar</li>
+                  <li>C:\Users\Stewart\.gradle\caches\modules-2\files-2.1\io.cucumber\html-formatter\17.0.0\7b80ba4032870ab180525e735b6fadd28242fb09\html-formatter-17.0.0.jar</li>
+                  <li>C:\Users\Stewart\.gradle\caches\modules-2\files-2.1\io.cucumber\messages\17.1.1\ab72f05cc30e3d62e9930080f2978143dda043cb\messages-17.1.1.jar</li>
+                  <li>C:\Users\Stewart\.gradle\caches\modules-2\files-2.1\io.cucumber\tag-expressions\4.0.2\2d7dbdf38a436c83815c5005beba951dedfa78ba\tag-expressions-4.0.2.jar</li>
+                  <li>C:\Users\Stewart\.gradle\caches\modules-2\files-2.1\junit\junit\4.13.2\8ac9e16d933b6fb43bc7f576336b8f4d7eb5ba12\junit-4.13.2.jar</li>
+                  <li>C:\Users\Stewart\.gradle\caches\modules-2\files-2.1\net.bytebuddy\byte-buddy-agent\1.11.3\5f479f9714aa0bbde019d3ad04f728fc47f0f16f\byte-buddy-agent-1.11.3.jar</li>
+                  <li>C:\Users\Stewart\.gradle\caches\modules-2\files-2.1\net.bytebuddy\byte-buddy\1.11.3\c2a818c3b71127167edff8b9dd1caa946f1c8c49\byte-buddy-1.11.3.jar</li>
+                  <li>C:\Users\Stewart\.gradle\caches\modules-2\files-2.1\org.apiguardian\apiguardian-api\1.1.2\a231e0d844d2721b0fa1b238006d15c6ded6842a\apiguardian-api-1.1.2.jar</li>
+                  <li>C:\Users\Stewart\.gradle\caches\modules-2\files-2.1\org.assertj\assertj-core\3.20.2\66f1f0ebd6db2b24e4a731979171da16ba919cd5\assertj-core-3.20.2.jar</li>
+                  <li>C:\Users\Stewart\.gradle\caches\modules-2\files-2.1\org.checkerframework\checker-qual\3.8.0\6b83e4a33220272c3a08991498ba9dc09519f190\checker-qual-3.8.0.jar</li>
+                  <li>C:\Users\Stewart\.gradle\caches\modules-2\files-2.1\org.hamcrest\hamcrest-core\1.3\42a25dc3219429f0e5d060061f71acb49bf010a0\hamcrest-core-1.3.jar</li>
+                  <li>C:\Users\Stewart\.gradle\caches\modules-2\files-2.1\org.junit.jupiter\junit-jupiter-api\5.7.2\f4b4079732a9c537983324cfa4e46655f21d2c56\junit-jupiter-api-5.7.2.jar</li>
+                  <li>C:\Users\Stewart\.gradle\caches\modules-2\files-2.1\org.junit.jupiter\junit-jupiter-params\5.7.2\685f832f8c54dd40100f646d61aca88ed9545421\junit-jupiter-params-5.7.2.jar</li>
+                  <li>C:\Users\Stewart\.gradle\caches\modules-2\files-2.1\org.junit.jupiter\junit-jupiter\5.7.2\62faa742964a9d8dab8fdb4a0eab7b01441c171f\junit-jupiter-5.7.2.jar</li>
+                  <li>C:\Users\Stewart\.gradle\caches\modules-2\files-2.1\org.junit.platform\junit-platform-commons\1.7.2\34adfea6c13fc4a996cf38cdad80800ce850d198\junit-platform-commons-1.7.2.jar</li>
+                  <li>C:\Users\Stewart\.gradle\caches\modules-2\files-2.1\org.mockito\mockito-core\3.11.2\bb97012477172d7c04ff2193e31fcb38dd171879\mockito-core-3.11.2.jar</li>
+                  <li>C:\Users\Stewart\.gradle\caches\modules-2\files-2.1\org.objenesis\objenesis\3.2\7fadf57620c8b8abdf7519533e5527367cb51f09\objenesis-3.2.jar</li>
+                  <li>C:\Users\Stewart\.gradle\caches\modules-2\files-2.1\org.opentest4j\opentest4j\1.2.0\28c11eb91f9b6d8e200631d46e20a7f407f2a046\opentest4j-1.2.0.jar</li>
+                  <li>C:\Users\Stewart\Documents\Git\SoftwareTesting\jpacman-ctgu\build\classes\java\main</li>
+                  <li>C:\Users\Stewart\Documents\Git\SoftwareTesting\jpacman-ctgu\build\resources\main</li>
+               </ul>
+            </div>
+            <div id="source-files">
+               <h3>Source Files:</h3>
+               <ul>
+                  <li>C:\Users\Stewart\Documents\Git\SoftwareTesting\jpacman-ctgu\src\test\java</li>
+                  <li>C:\Users\Stewart\Documents\Git\SoftwareTesting\jpacman-ctgu\src\test\resources</li>
+               </ul>
+            </div>
+            <div id="plugins">
+               <h3>Plugins:</h3>
+               <ul>
+                  <li>com.h3xstream.findsecbugs (enabled: true)</li>
+               </ul>
+            </div>
+            <div id="analysis-error">
+               <h3>Analysis Errors:</h3>
+               <ul>
+                  <li>None</li>
+               </ul>
+            </div>
+         </div>
+         <div id="historyContainer" class="displayContainer">Loading...</div>
+         <div id="listByCategoriesContainer" class="displayContainer">Loading...</div>
+         <div id="listByPackagesContainer" class="displayContainer">Loading...</div>
+      </div>
+      <div id="bug-collection" style="display:none;">
+         <div id="b-uid-5829688b1b4ba7cfa7d8939736590bad-0" class="bug">
+            <div class="b-r">In class nl.tudelft.jpacman.board.OccupantTest</div>
+            <div class="b-r">In method nl.tudelft.jpacman.board.OccupantTest.setUp()</div>
+            <div class="b-r">In class nl.tudelft.jpacman.e2e.framework.startup.MovePlayerSteps</div>
+            <div class="b-r">In method nl.tudelft.jpacman.e2e.framework.startup.MovePlayerSteps.setup()</div>
+            <div class="b-r">At OccupantTest.java:[lines 26-27]</div>
+            <div class="b-d">Confusing to have methods nl.tudelft.jpacman.board.OccupantTest.setUp() and nl.tudelft.jpacman.e2e.framework.startup.MovePlayerSteps.setup()</div>
+         </div>
+         <div id="b-uid-6773ba6bb1b1e25a7eaaf765104b6d81-0" class="bug">
+            <div class="b-r">In class nl.tudelft.jpacman.board.OccupantTest</div>
+            <div class="b-r">Field nl.tudelft.jpacman.board.OccupantTest.unit</div>
+            <div class="b-r">In method nl.tudelft.jpacman.board.OccupantTest.noStartSquare()</div>
+            <div class="b-r">At OccupantTest.java:[line 35]</div>
+            <div class="b-d">OccupantTest.unit not initialized in constructor and dereferenced in nl.tudelft.jpacman.board.OccupantTest.noStartSquare()</div>
+         </div>
+         <div id="b-uid-80ddea8d4b17ffe81e4265f71bc3d909-0" class="bug">
+            <div class="b-r">In class nl.tudelft.jpacman.board.OccupantTest</div>
+            <div class="b-r">Field nl.tudelft.jpacman.board.OccupantTest.unit</div>
+            <div class="b-r">In method nl.tudelft.jpacman.board.OccupantTest.testOccupy()</div>
+            <div class="b-r">At OccupantTest.java:[line 45]</div>
+            <div class="b-d">OccupantTest.unit not initialized in constructor and dereferenced in nl.tudelft.jpacman.board.OccupantTest.testOccupy()</div>
+         </div>
+         <div id="b-uid-6464bbc27a2a9c9b1925cee469cb9d73-0" class="bug">
+            <div class="b-r">In class nl.tudelft.jpacman.board.OccupantTest</div>
+            <div class="b-r">Field nl.tudelft.jpacman.board.OccupantTest.unit</div>
+            <div class="b-r">In method nl.tudelft.jpacman.board.OccupantTest.testReoccupy()</div>
+            <div class="b-r">At OccupantTest.java:[line 59]</div>
+            <div class="b-d">OccupantTest.unit not initialized in constructor and dereferenced in nl.tudelft.jpacman.board.OccupantTest.testReoccupy()</div>
+         </div>
+         <div id="b-uid-3777706c267785b1295e1a6d5ba68301-0" class="bug">
+            <div class="b-r">In class nl.tudelft.jpacman.e2e.framework.startup.MovePlayerSteps</div>
+            <div class="b-r">Field nl.tudelft.jpacman.e2e.framework.startup.MovePlayerSteps.launcher</div>
+            <div class="b-r">In method nl.tudelft.jpacman.e2e.framework.startup.MovePlayerSteps.getGame()</div>
+            <div class="b-r">At MovePlayerSteps.java:[line 27]</div>
+            <div class="b-d">MovePlayerSteps.launcher not initialized in constructor and dereferenced in nl.tudelft.jpacman.e2e.framework.startup.MovePlayerSteps.getGame()</div>
+         </div>
+         <div id="b-uid-f4a7da9fd6c5d76ea23936cddd83dcad-0" class="bug">
+            <div class="b-r">In class nl.tudelft.jpacman.e2e.framework.startup.MovePlayerSteps</div>
+            <div class="b-r">Field nl.tudelft.jpacman.e2e.framework.startup.MovePlayerSteps.launcher</div>
+            <div class="b-r">In method nl.tudelft.jpacman.e2e.framework.startup.MovePlayerSteps.teardown()</div>
+            <div class="b-r">At MovePlayerSteps.java:[line 90]</div>
+            <div class="b-d">MovePlayerSteps.launcher not initialized in constructor and dereferenced in nl.tudelft.jpacman.e2e.framework.startup.MovePlayerSteps.teardown()</div>
+         </div>
+         <div id="b-uid-2385ba68d995b71d0ad36a6da8bd4948-0" class="bug">
+            <div class="b-r">In class nl.tudelft.jpacman.e2e.framework.startup.MovePlayerSteps</div>
+            <div class="b-r">Field nl.tudelft.jpacman.e2e.framework.startup.MovePlayerSteps.nextSquare</div>
+            <div class="b-r">In method nl.tudelft.jpacman.e2e.framework.startup.MovePlayerSteps.the_pellet_disappears_from_that_square()</div>
+            <div class="b-r">At MovePlayerSteps.java:[line 85]</div>
+            <div class="b-d">MovePlayerSteps.nextSquare not initialized in constructor and dereferenced in nl.tudelft.jpacman.e2e.framework.startup.MovePlayerSteps.the_pellet_disappears_from_that_square()</div>
+         </div>
+         <div id="b-uid-c6832832c027cd2b3aa20bdefc29218a-0" class="bug">
+            <div class="b-r">In class nl.tudelft.jpacman.e2e.framework.startup.MovePlayerSteps</div>
+            <div class="b-r">Field nl.tudelft.jpacman.e2e.framework.startup.MovePlayerSteps.pellet</div>
+            <div class="b-r">In method nl.tudelft.jpacman.e2e.framework.startup.MovePlayerSteps.i_earn_the_points_for_the_pellet()</div>
+            <div class="b-r">At MovePlayerSteps.java:[line 80]</div>
+            <div class="b-d">MovePlayerSteps.pellet not initialized in constructor and dereferenced in nl.tudelft.jpacman.e2e.framework.startup.MovePlayerSteps.i_earn_the_points_for_the_pellet()</div>
+         </div>
+         <div id="b-uid-1cd6e12ad4f1958531bba18a2219cbd0-0" class="bug">
+            <div class="b-r">In class nl.tudelft.jpacman.e2e.framework.startup.MovePlayerSteps</div>
+            <div class="b-r">Field nl.tudelft.jpacman.e2e.framework.startup.MovePlayerSteps.player</div>
+            <div class="b-r">In method nl.tudelft.jpacman.e2e.framework.startup.MovePlayerSteps.i_earn_the_points_for_the_pellet()</div>
+            <div class="b-r">At MovePlayerSteps.java:[line 80]</div>
+            <div class="b-d">MovePlayerSteps.player not initialized in constructor and dereferenced in nl.tudelft.jpacman.e2e.framework.startup.MovePlayerSteps.i_earn_the_points_for_the_pellet()</div>
+         </div>
+         <div id="b-uid-2de6807f8bcb50740011fcf82c4e37d1-0" class="bug">
+            <div class="b-r">In class nl.tudelft.jpacman.e2e.framework.startup.MovePlayerSteps</div>
+            <div class="b-r">Field nl.tudelft.jpacman.e2e.framework.startup.MovePlayerSteps.player</div>
+            <div class="b-r">In method nl.tudelft.jpacman.e2e.framework.startup.MovePlayerSteps.my_Pacman_can_move_to_that_square()</div>
+            <div class="b-r">At MovePlayerSteps.java:[line 74]</div>
+            <div class="b-d">MovePlayerSteps.player not initialized in constructor and dereferenced in nl.tudelft.jpacman.e2e.framework.startup.MovePlayerSteps.my_Pacman_can_move_to_that_square()</div>
+         </div>
+         <div id="b-uid-9d5d86aef47a7e8073a3d5a5730d2bd6-0" class="bug">
+            <div class="b-r">In class nl.tudelft.jpacman.e2e.framework.startup.StartGameSteps</div>
+            <div class="b-r">Field nl.tudelft.jpacman.e2e.framework.startup.StartGameSteps.launcher</div>
+            <div class="b-r">In method nl.tudelft.jpacman.e2e.framework.startup.StartGameSteps.getGame()</div>
+            <div class="b-r">At StartGameSteps.java:[line 16]</div>
+            <div class="b-d">StartGameSteps.launcher not initialized in constructor and dereferenced in nl.tudelft.jpacman.e2e.framework.startup.StartGameSteps.getGame()</div>
+         </div>
+         <div id="b-uid-bc49274c322711ee30d0ad06139ae792-0" class="bug">
+            <div class="b-r">In class nl.tudelft.jpacman.e2e.framework.startup.StartGameSteps</div>
+            <div class="b-r">Field nl.tudelft.jpacman.e2e.framework.startup.StartGameSteps.launcher</div>
+            <div class="b-r">In method nl.tudelft.jpacman.e2e.framework.startup.StartGameSteps.teardownUI()</div>
+            <div class="b-r">At StartGameSteps.java:[line 37]</div>
+            <div class="b-d">StartGameSteps.launcher not initialized in constructor and dereferenced in nl.tudelft.jpacman.e2e.framework.startup.StartGameSteps.teardownUI()</div>
+         </div>
+         <div id="b-uid-e53442fa7eca40789d0898757501981d-0" class="bug">
+            <div class="b-r">In class nl.tudelft.jpacman.e2e.framework.startup.StartupCnSteps</div>
+            <div class="b-r">Field nl.tudelft.jpacman.e2e.framework.startup.StartupCnSteps.launcher</div>
+            <div class="b-r">In method nl.tudelft.jpacman.e2e.framework.startup.StartupCnSteps.getGame()</div>
+            <div class="b-r">At StartupCnSteps.java:[line 15]</div>
+            <div class="b-d">StartupCnSteps.launcher not initialized in constructor and dereferenced in nl.tudelft.jpacman.e2e.framework.startup.StartupCnSteps.getGame()</div>
+         </div>
+         <div id="b-uid-a42371ced3ddb1bae7be9b73308a9ef6-0" class="bug">
+            <div class="b-r">In class nl.tudelft.jpacman.e2e.framework.startup.StartupCnSteps</div>
+            <div class="b-r">Field nl.tudelft.jpacman.e2e.framework.startup.StartupCnSteps.launcher</div>
+            <div class="b-r">In method nl.tudelft.jpacman.e2e.framework.startup.StartupCnSteps.teardownUI()</div>
+            <div class="b-r">At StartupCnSteps.java:[line 35]</div>
+            <div class="b-d">StartupCnSteps.launcher not initialized in constructor and dereferenced in nl.tudelft.jpacman.e2e.framework.startup.StartupCnSteps.teardownUI()</div>
+         </div>
+         <div id="b-uid-65c5318377a7aaf11ac7f2cab3d6cd0c-0" class="bug">
+            <div class="b-r">In class nl.tudelft.jpacman.e2e.framework.suspension.ResumeSteps</div>
+            <div class="b-r">Field nl.tudelft.jpacman.e2e.framework.suspension.ResumeSteps.launcher</div>
+            <div class="b-r">In method nl.tudelft.jpacman.e2e.framework.suspension.ResumeSteps.getGame()</div>
+            <div class="b-r">At ResumeSteps.java:[line 17]</div>
+            <div class="b-d">ResumeSteps.launcher not initialized in constructor and dereferenced in nl.tudelft.jpacman.e2e.framework.suspension.ResumeSteps.getGame()</div>
+         </div>
+         <div id="b-uid-9e4a0793eb18c5c1bae8d5316191a247-0" class="bug">
+            <div class="b-r">In class nl.tudelft.jpacman.e2e.framework.suspension.ResumeSteps</div>
+            <div class="b-r">Field nl.tudelft.jpacman.e2e.framework.suspension.ResumeSteps.launcher</div>
+            <div class="b-r">In method nl.tudelft.jpacman.e2e.framework.suspension.ResumeSteps.teardownUI()</div>
+            <div class="b-r">At ResumeSteps.java:[line 44]</div>
+            <div class="b-d">ResumeSteps.launcher not initialized in constructor and dereferenced in nl.tudelft.jpacman.e2e.framework.suspension.ResumeSteps.teardownUI()</div>
+         </div>
+         <div id="b-uid-99c417d3d9f935189a1a9ab48e6c7257-0" class="bug">
+            <div class="b-r">In class nl.tudelft.jpacman.e2e.framework.suspension.SuspensionSteps</div>
+            <div class="b-r">Field nl.tudelft.jpacman.e2e.framework.suspension.SuspensionSteps.launther</div>
+            <div class="b-r">In method nl.tudelft.jpacman.e2e.framework.suspension.SuspensionSteps.getGame()</div>
+            <div class="b-r">At SuspensionSteps.java:[line 22]</div>
+            <div class="b-d">SuspensionSteps.launther not initialized in constructor and dereferenced in nl.tudelft.jpacman.e2e.framework.suspension.SuspensionSteps.getGame()</div>
+         </div>
+         <div id="b-uid-1f89ddf28ebc4b350800453a0137f7e3-0" class="bug">
+            <div class="b-r">In class nl.tudelft.jpacman.e2e.framework.suspension.SuspensionSteps</div>
+            <div class="b-r">Field nl.tudelft.jpacman.e2e.framework.suspension.SuspensionSteps.launther</div>
+            <div class="b-r">In method nl.tudelft.jpacman.e2e.framework.suspension.SuspensionSteps.teardownUI()</div>
+            <div class="b-r">At SuspensionSteps.java:[line 43]</div>
+            <div class="b-d">SuspensionSteps.launther not initialized in constructor and dereferenced in nl.tudelft.jpacman.e2e.framework.suspension.SuspensionSteps.teardownUI()</div>
+         </div>
+         <div id="b-uid-57b985c320515636046e66796861e080-0" class="bug">
+            <div class="b-r">In class nl.tudelft.jpacman.e2e.framework.suspension.SuspensionSteps</div>
+            <div class="b-r">Field nl.tudelft.jpacman.e2e.framework.suspension.SuspensionSteps.launther</div>
+            <div class="b-r">In method nl.tudelft.jpacman.e2e.framework.suspension.SuspensionSteps.the_game_has_started()</div>
+            <div class="b-r">At SuspensionSteps.java:[line 27]</div>
+            <div class="b-d">SuspensionSteps.launther not initialized in constructor and dereferenced in nl.tudelft.jpacman.e2e.framework.suspension.SuspensionSteps.the_game_has_started()</div>
+         </div>
+         <div id="tip-NM_CONFUSING" class="tip">
+            <p> The referenced methods have names that differ only by capitalization.</p>
+         </div>
+         <div id="tip-UWF_FIELD_NOT_INITIALIZED_IN_CONSTRUCTOR" class="tip">
+            <p> This field is never initialized within any constructor, and is therefore could be null after
+            the object is constructed. Elsewhere, it is loaded and dereferenced without a null check.
+            This could be a either an error or a questionable design, since
+            it means a null pointer exception will be generated if that field is dereferenced
+            before being initialized.
+            </p>
+         </div>
+      </div>
+   </body>
+</html>

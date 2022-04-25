@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="nl.tudelft.jpacman.board.OccupantTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2022-04-25T08:25:59" hostname="HUAWEIMATEBOOK" time="0.277">
+  <properties/>
+  <testcase name="noStartSquare()" classname="nl.tudelft.jpacman.board.OccupantTest" time="0.215"/>
+  <testcase name="testReoccupy()" classname="nl.tudelft.jpacman.board.OccupantTest" time="0.059"/>
+  <testcase name="testOccupy()" classname="nl.tudelft.jpacman.board.OccupantTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

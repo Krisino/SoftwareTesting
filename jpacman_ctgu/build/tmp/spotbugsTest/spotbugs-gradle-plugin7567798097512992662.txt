@@ -1,0 +1,10 @@
+C:\Users\Stewart\Documents\Git\SoftwareTesting\jpacman-ctgu\build\classes\java\test\nl\tudelft\jpacman\board\BasicSquare.class
+C:\Users\Stewart\Documents\Git\SoftwareTesting\jpacman-ctgu\build\classes\java\test\nl\tudelft\jpacman\board\BasicUnit.class
+C:\Users\Stewart\Documents\Git\SoftwareTesting\jpacman-ctgu\build\classes\java\test\nl\tudelft\jpacman\board\BoardWithinBordersTest.class
+C:\Users\Stewart\Documents\Git\SoftwareTesting\jpacman-ctgu\build\classes\java\test\nl\tudelft\jpacman\board\DirectionTest.class
+C:\Users\Stewart\Documents\Git\SoftwareTesting\jpacman-ctgu\build\classes\java\test\nl\tudelft\jpacman\board\OccupantTest.class
+C:\Users\Stewart\Documents\Git\SoftwareTesting\jpacman-ctgu\build\classes\java\test\nl\tudelft\jpacman\e2e\framework\startup\MovePlayerSteps.class
+C:\Users\Stewart\Documents\Git\SoftwareTesting\jpacman-ctgu\build\classes\java\test\nl\tudelft\jpacman\e2e\framework\startup\StartGameSteps.class
+C:\Users\Stewart\Documents\Git\SoftwareTesting\jpacman-ctgu\build\classes\java\test\nl\tudelft\jpacman\e2e\framework\startup\StartupCnSteps.class
+C:\Users\Stewart\Documents\Git\SoftwareTesting\jpacman-ctgu\build\classes\java\test\nl\tudelft\jpacman\e2e\framework\suspension\ResumeSteps.class
+C:\Users\Stewart\Documents\Git\SoftwareTesting\jpacman-ctgu\build\classes\java\test\nl\tudelft\jpacman\e2e\framework\suspension\SuspensionSteps.class
