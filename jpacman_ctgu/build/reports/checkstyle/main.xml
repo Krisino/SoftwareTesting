@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle version="8.44">
-<file name="C:\Users\Stewart\Documents\Git\SoftwareTesting\jpacman-ctgu\src\main\java\nl\tudelft\jpacman\Launcher.java">
+<file name="C:\Users\Stewart\Documents\Git\SoftwareTesting\jpacman_ctgu\src\main\java\nl\tudelft\jpacman\Launcher.java">
 <error line="26" severity="error" message="Line has trailing spaces." source="com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck"/>
 <error line="64" column="33" severity="error" message="参数： fileName 应定义为 final 的。" source="com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck"/>
 <error line="165" column="41" severity="error" message="参数： direction 应定义为 final 的。" source="com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck"/>
 <error line="210" column="29" severity="error" message="参数： args 应定义为 final 的。" source="com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck"/>
 </file>
-<file name="C:\Users\Stewart\Documents\Git\SoftwareTesting\jpacman-ctgu\src\main\java\nl\tudelft\jpacman\PacmanConfigurationException.java">
+<file name="C:\Users\Stewart\Documents\Git\SoftwareTesting\jpacman_ctgu\src\main\java\nl\tudelft\jpacman\PacmanConfigurationException.java">
 <error line="17" column="41" severity="error" message="参数： message 应定义为 final 的。" source="com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck"/>
 <error line="27" column="41" severity="error" message="参数： message 应定义为 final 的。" source="com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck"/>
 <error line="27" column="57" severity="error" message="参数： cause 应定义为 final 的。" source="com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck"/>
 </file>
-<file name="C:\Users\Stewart\Documents\Git\SoftwareTesting\jpacman-ctgu\src\main\java\nl\tudelft\jpacman\board\Board.java">
+<file name="C:\Users\Stewart\Documents\Git\SoftwareTesting\jpacman_ctgu\src\main\java\nl\tudelft\jpacman\board\Board.java">
 <error line="7" severity="error" message="Line has trailing spaces." source="com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck"/>
 <error line="24" column="11" severity="error" message="参数： grid 应定义为 final 的。" source="com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck"/>
 <error line="75" column="28" severity="error" message="参数： x 应定义为 final 的。" source="com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck"/>
@@ -19,7 +19,7 @@
 <error line="91" column="34" severity="error" message="参数： x 应定义为 final 的。" source="com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck"/>
 <error line="91" column="41" severity="error" message="参数： y 应定义为 final 的。" source="com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck"/>
 </file>
-<file name="C:\Users\Stewart\Documents\Git\SoftwareTesting\jpacman-ctgu\src\main\java\nl\tudelft\jpacman\board\BoardFactory.java">
+<file name="C:\Users\Stewart\Documents\Git\SoftwareTesting\jpacman_ctgu\src\main\java\nl\tudelft\jpacman\board\BoardFactory.java">
 <error line="10" severity="error" message="Line has trailing spaces." source="com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck"/>
 <error line="26" column="25" severity="error" message="参数： spriteStore 应定义为 final 的。" source="com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck"/>
 <error line="38" column="30" severity="error" message="参数： grid 应定义为 final 的。" source="com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck"/>
@@ -28,12 +28,12 @@
 <error line="129" column="16" severity="error" message="参数： sprite 应定义为 final 的。" source="com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck"/>
 <error line="134" column="39" severity="error" message="参数： unit 应定义为 final 的。" source="com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck"/>
 </file>
-<file name="C:\Users\Stewart\Documents\Git\SoftwareTesting\jpacman-ctgu\src\main\java\nl\tudelft\jpacman\board\Direction.java">
+<file name="C:\Users\Stewart\Documents\Git\SoftwareTesting\jpacman_ctgu\src\main\java\nl\tudelft\jpacman\board\Direction.java">
 <error line="6" severity="error" message="Line has trailing spaces." source="com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck"/>
 <error line="52" column="15" severity="error" message="参数： deltaX 应定义为 final 的。" source="com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck"/>
 <error line="52" column="27" severity="error" message="参数： deltaY 应定义为 final 的。" source="com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck"/>
 </file>
-<file name="C:\Users\Stewart\Documents\Git\SoftwareTesting\jpacman-ctgu\src\main\java\nl\tudelft\jpacman\board\Square.java">
+<file name="C:\Users\Stewart\Documents\Git\SoftwareTesting\jpacman_ctgu\src\main\java\nl\tudelft\jpacman\board\Square.java">
 <error line="15" severity="error" message="Line has trailing spaces." source="com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck"/>
 <error line="45" column="31" severity="error" message="参数： direction 应定义为 final 的。" source="com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck"/>
 <error line="58" column="22" severity="error" message="参数： neighbour 应定义为 final 的。" source="com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck"/>
@@ -41,31 +41,31 @@
 <error line="80" column="14" severity="error" message="参数： occupant 应定义为 final 的。" source="com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck"/>
 <error line="93" column="17" severity="error" message="参数： occupant 应定义为 final 的。" source="com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck"/>
 </file>
-<file name="C:\Users\Stewart\Documents\Git\SoftwareTesting\jpacman-ctgu\src\main\java\nl\tudelft\jpacman\board\Unit.java">
+<file name="C:\Users\Stewart\Documents\Git\SoftwareTesting\jpacman_ctgu\src\main\java\nl\tudelft\jpacman\board\Unit.java">
 <error line="8" severity="error" message="Line has trailing spaces." source="com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck"/>
 <error line="33" column="30" severity="error" message="参数： newDirection 应定义为 final 的。" source="com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck"/>
 <error line="73" column="24" severity="error" message="参数： target 应定义为 final 的。" source="com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck"/>
 <error line="120" column="34" severity="error" message="参数： amountToLookAhead 应定义为 final 的。" source="com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck"/>
 </file>
-<file name="C:\Users\Stewart\Documents\Git\SoftwareTesting\jpacman-ctgu\src\main\java\nl\tudelft\jpacman\game\Game.java">
+<file name="C:\Users\Stewart\Documents\Git\SoftwareTesting\jpacman_ctgu\src\main\java\nl\tudelft\jpacman\game\Game.java">
 <error line="14" severity="error" message="Line has trailing spaces." source="com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck"/>
 <error line="40" column="20" severity="error" message="参数： pointCalculator 应定义为 final 的。" source="com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck"/>
 <error line="99" column="22" severity="error" message="参数： player 应定义为 final 的。" source="com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck"/>
 <error line="99" column="37" severity="error" message="参数： direction 应定义为 final 的。" source="com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck"/>
 </file>
-<file name="C:\Users\Stewart\Documents\Git\SoftwareTesting\jpacman-ctgu\src\main\java\nl\tudelft\jpacman\game\GameFactory.java">
+<file name="C:\Users\Stewart\Documents\Git\SoftwareTesting\jpacman_ctgu\src\main\java\nl\tudelft\jpacman\game\GameFactory.java">
 <error line="10" severity="error" message="Line has trailing spaces." source="com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck"/>
 <error line="25" column="24" severity="error" message="参数： playerFactory 应定义为 final 的。" source="com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck"/>
 <error line="38" column="40" severity="error" message="参数： level 应定义为 final 的。" source="com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck"/>
 <error line="38" column="53" severity="error" message="参数： pointCalculator 应定义为 final 的。" source="com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck"/>
 </file>
-<file name="C:\Users\Stewart\Documents\Git\SoftwareTesting\jpacman-ctgu\src\main\java\nl\tudelft\jpacman\game\SinglePlayerGame.java">
+<file name="C:\Users\Stewart\Documents\Git\SoftwareTesting\jpacman_ctgu\src\main\java\nl\tudelft\jpacman\game\SinglePlayerGame.java">
 <error line="14" severity="error" message="Line has trailing spaces." source="com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck"/>
 <error line="38" column="32" severity="error" message="参数： player 应定义为 final 的。" source="com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck"/>
 <error line="38" column="47" severity="error" message="参数： level 应定义为 final 的。" source="com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck"/>
 <error line="38" column="60" severity="error" message="参数： pointCalculator 应定义为 final 的。" source="com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck"/>
 </file>
-<file name="C:\Users\Stewart\Documents\Git\SoftwareTesting\jpacman-ctgu\src\main\java\nl\tudelft\jpacman\level\CollisionInteractionMap.java">
+<file name="C:\Users\Stewart\Documents\Git\SoftwareTesting\jpacman_ctgu\src\main\java\nl\tudelft\jpacman\level\CollisionInteractionMap.java">
 <error line="14" severity="error" message="Line has trailing spaces." source="com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck"/>
 <error line="48" column="9" severity="error" message="参数： collider 应定义为 final 的。" source="com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck"/>
 <error line="48" column="29" severity="error" message="参数： collidee 应定义为 final 的。" source="com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck"/>
@@ -86,15 +86,15 @@
 <error line="246" column="37" severity="error" message="参数： collider 应定义为 final 的。" source="com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck"/>
 <error line="246" column="50" severity="error" message="参数： collidee 应定义为 final 的。" source="com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck"/>
 </file>
-<file name="C:\Users\Stewart\Documents\Git\SoftwareTesting\jpacman-ctgu\src\main\java\nl\tudelft\jpacman\level\CollisionMap.java">
+<file name="C:\Users\Stewart\Documents\Git\SoftwareTesting\jpacman_ctgu\src\main\java\nl\tudelft\jpacman\level\CollisionMap.java">
 <error line="9" severity="error" message="Line has trailing spaces." source="com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck"/>
 </file>
-<file name="C:\Users\Stewart\Documents\Git\SoftwareTesting\jpacman-ctgu\src\main\java\nl\tudelft\jpacman\level\DefaultPlayerInteractionMap.java">
+<file name="C:\Users\Stewart\Documents\Git\SoftwareTesting\jpacman_ctgu\src\main\java\nl\tudelft\jpacman\level\DefaultPlayerInteractionMap.java">
 <error line="31" column="40" severity="error" message="参数： pointCalculator 应定义为 final 的。" source="com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck"/>
 <error line="36" column="25" severity="error" message="参数： mover 应定义为 final 的。" source="com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck"/>
 <error line="36" column="37" severity="error" message="参数： movedInto 应定义为 final 的。" source="com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck"/>
 </file>
-<file name="C:\Users\Stewart\Documents\Git\SoftwareTesting\jpacman-ctgu\src\main\java\nl\tudelft\jpacman\level\Level.java">
+<file name="C:\Users\Stewart\Documents\Git\SoftwareTesting\jpacman_ctgu\src\main\java\nl\tudelft\jpacman\level\Level.java">
 <error line="24" severity="error" message="Line has trailing spaces." source="com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck"/>
 <error line="93" column="18" severity="error" message="参数： board 应定义为 final 的。" source="com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck"/>
 <error line="93" column="31" severity="error" message="参数： ghosts 应定义为 final 的。" source="com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck"/>
@@ -108,7 +108,7 @@
 <error line="340" column="21" severity="error" message="参数： service 应定义为 final 的。" source="com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck"/>
 <error line="340" column="55" severity="error" message="参数： npc 应定义为 final 的。" source="com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck"/>
 </file>
-<file name="C:\Users\Stewart\Documents\Git\SoftwareTesting\jpacman-ctgu\src\main\java\nl\tudelft\jpacman\level\LevelFactory.java">
+<file name="C:\Users\Stewart\Documents\Git\SoftwareTesting\jpacman_ctgu\src\main\java\nl\tudelft\jpacman\level\LevelFactory.java">
 <error line="20" severity="error" message="Line has trailing spaces." source="com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck"/>
 <error line="65" column="25" severity="error" message="参数： spriteStore 应定义为 final 的。" source="com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck"/>
 <error line="66" column="25" severity="error" message="参数： ghostFactory 应定义为 final 的。" source="com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck"/>
@@ -118,7 +118,7 @@
 <error line="85" column="63" severity="error" message="参数： startPositions 应定义为 final 的。" source="com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck"/>
 <error line="142" column="21" severity="error" message="参数： ghostSprite 应定义为 final 的。" source="com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck"/>
 </file>
-<file name="C:\Users\Stewart\Documents\Git\SoftwareTesting\jpacman-ctgu\src\main\java\nl\tudelft\jpacman\level\MapParser.java">
+<file name="C:\Users\Stewart\Documents\Git\SoftwareTesting\jpacman_ctgu\src\main\java\nl\tudelft\jpacman\level\MapParser.java">
 <error line="42" column="22" severity="error" message="参数： levelFactory 应定义为 final 的。" source="com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck"/>
 <error line="42" column="49" severity="error" message="参数： boardFactory 应定义为 final 的。" source="com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck"/>
 <error line="64" column="27" severity="error" message="参数： map 应定义为 final 的。" source="com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck"/>
@@ -141,12 +141,12 @@
 <error line="221" column="27" severity="error" message="参数： source 应定义为 final 的。" source="com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck"/>
 <error line="246" column="27" severity="error" message="参数： mapName 应定义为 final 的。" source="com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck"/>
 </file>
-<file name="C:\Users\Stewart\Documents\Git\SoftwareTesting\jpacman-ctgu\src\main\java\nl\tudelft\jpacman\level\Pellet.java">
+<file name="C:\Users\Stewart\Documents\Git\SoftwareTesting\jpacman_ctgu\src\main\java\nl\tudelft\jpacman\level\Pellet.java">
 <error line="9" severity="error" message="Line has trailing spaces." source="com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck"/>
 <error line="28" column="19" severity="error" message="参数： points 应定义为 final 的。" source="com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck"/>
 <error line="28" column="31" severity="error" message="参数： sprite 应定义为 final 的。" source="com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck"/>
 </file>
-<file name="C:\Users\Stewart\Documents\Git\SoftwareTesting\jpacman-ctgu\src\main\java\nl\tudelft\jpacman\level\Player.java">
+<file name="C:\Users\Stewart\Documents\Git\SoftwareTesting\jpacman_ctgu\src\main\java\nl\tudelft\jpacman\level\Player.java">
 <error line="13" severity="error" message="Line has trailing spaces." source="com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck"/>
 <error line="50" column="22" severity="error" message="参数： spriteMap 应定义为 final 的。" source="com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck"/>
 <error line="50" column="56" severity="error" message="参数： deathAnimation 应定义为 final 的。" source="com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck"/>
@@ -154,7 +154,7 @@
 <error line="100" column="27" severity="error" message="参数： killer 应定义为 final 的。" source="com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck"/>
 <error line="128" column="27" severity="error" message="参数： points 应定义为 final 的。" source="com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck"/>
 </file>
-<file name="C:\Users\Stewart\Documents\Git\SoftwareTesting\jpacman-ctgu\src\main\java\nl\tudelft\jpacman\level\PlayerCollisions.java">
+<file name="C:\Users\Stewart\Documents\Git\SoftwareTesting\jpacman_ctgu\src\main\java\nl\tudelft\jpacman\level\PlayerCollisions.java">
 <error line="10" severity="error" message="Line has trailing spaces." source="com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck"/>
 <error line="29" column="29" severity="error" message="参数： pointCalculator 应定义为 final 的。" source="com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck"/>
 <error line="34" column="25" severity="error" message="参数： mover 应定义为 final 的。" source="com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck"/>
@@ -172,38 +172,38 @@
 <error line="90" column="36" severity="error" message="参数： player 应定义为 final 的。" source="com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck"/>
 <error line="90" column="51" severity="error" message="参数： pellet 应定义为 final 的。" source="com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck"/>
 </file>
-<file name="C:\Users\Stewart\Documents\Git\SoftwareTesting\jpacman-ctgu\src\main\java\nl\tudelft\jpacman\level\PlayerFactory.java">
+<file name="C:\Users\Stewart\Documents\Git\SoftwareTesting\jpacman_ctgu\src\main\java\nl\tudelft\jpacman\level\PlayerFactory.java">
 <error line="8" severity="error" message="Line has trailing spaces." source="com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck"/>
 <error line="23" column="26" severity="error" message="参数： spriteStore 应定义为 final 的。" source="com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck"/>
 </file>
-<file name="C:\Users\Stewart\Documents\Git\SoftwareTesting\jpacman-ctgu\src\main\java\nl\tudelft\jpacman\npc\Ghost.java">
+<file name="C:\Users\Stewart\Documents\Git\SoftwareTesting\jpacman_ctgu\src\main\java\nl\tudelft\jpacman\npc\Ghost.java">
 <error line="63" column="21" severity="error" message="参数： spriteMap 应定义为 final 的。" source="com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck"/>
 <error line="63" column="55" severity="error" message="参数： moveInterval 应定义为 final 的。" source="com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck"/>
 <error line="63" column="73" severity="error" message="参数： intervalVariation 应定义为 final 的。" source="com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck"/>
 </file>
-<file name="C:\Users\Stewart\Documents\Git\SoftwareTesting\jpacman-ctgu\src\main\java\nl\tudelft\jpacman\npc\ghost\Blinky.java">
+<file name="C:\Users\Stewart\Documents\Git\SoftwareTesting\jpacman_ctgu\src\main\java\nl\tudelft\jpacman\npc\ghost\Blinky.java">
 <error line="40" severity="error" message="Line has trailing spaces." source="com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck"/>
 <error line="64" column="19" severity="error" message="参数： spriteMap 应定义为 final 的。" source="com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck"/>
 </file>
-<file name="C:\Users\Stewart\Documents\Git\SoftwareTesting\jpacman-ctgu\src\main\java\nl\tudelft\jpacman\npc\ghost\Clyde.java">
+<file name="C:\Users\Stewart\Documents\Git\SoftwareTesting\jpacman_ctgu\src\main\java\nl\tudelft\jpacman\npc\ghost\Clyde.java">
 <error line="30" severity="error" message="Line has trailing spaces." source="com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck"/>
 <error line="77" column="18" severity="error" message="参数： spriteMap 应定义为 final 的。" source="com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck"/>
 <error line="86" severity="error" message="Line has trailing spaces." source="com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck"/>
 <error line="105" severity="error" message="Line has trailing spaces." source="com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck"/>
 </file>
-<file name="C:\Users\Stewart\Documents\Git\SoftwareTesting\jpacman-ctgu\src\main\java\nl\tudelft\jpacman\npc\ghost\GhostColor.java">
+<file name="C:\Users\Stewart\Documents\Git\SoftwareTesting\jpacman_ctgu\src\main\java\nl\tudelft\jpacman\npc\ghost\GhostColor.java">
 <error line="6" severity="error" message="Line has trailing spaces." source="com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck"/>
 </file>
-<file name="C:\Users\Stewart\Documents\Git\SoftwareTesting\jpacman-ctgu\src\main\java\nl\tudelft\jpacman\npc\ghost\GhostFactory.java">
+<file name="C:\Users\Stewart\Documents\Git\SoftwareTesting\jpacman_ctgu\src\main\java\nl\tudelft\jpacman\npc\ghost\GhostFactory.java">
 <error line="9" severity="error" message="Line has trailing spaces." source="com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck"/>
 <error line="23" column="25" severity="error" message="参数： spriteStore 应定义为 final 的。" source="com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck"/>
 </file>
-<file name="C:\Users\Stewart\Documents\Git\SoftwareTesting\jpacman-ctgu\src\main\java\nl\tudelft\jpacman\npc\ghost\Inky.java">
+<file name="C:\Users\Stewart\Documents\Git\SoftwareTesting\jpacman_ctgu\src\main\java\nl\tudelft\jpacman\npc\ghost\Inky.java">
 <error line="54" column="17" severity="error" message="参数： spriteMap 应定义为 final 的。" source="com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck"/>
 <error line="115" column="31" severity="error" message="参数： directions 应定义为 final 的。" source="com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck"/>
 <error line="115" column="59" severity="error" message="参数： start 应定义为 final 的。" source="com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck"/>
 </file>
-<file name="C:\Users\Stewart\Documents\Git\SoftwareTesting\jpacman-ctgu\src\main\java\nl\tudelft\jpacman\npc\ghost\Navigation.java">
+<file name="C:\Users\Stewart\Documents\Git\SoftwareTesting\jpacman_ctgu\src\main\java\nl\tudelft\jpacman\npc\ghost\Navigation.java">
 <error line="16" severity="error" message="Line has trailing spaces." source="com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck"/>
 <error line="42" column="48" severity="error" message="参数： from 应定义为 final 的。" source="com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck"/>
 <error line="42" column="61" severity="error" message="参数： to 应定义为 final 的。" source="com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck"/>
@@ -223,13 +223,13 @@
 <error line="193" column="35" severity="error" message="参数： square 应定义为 final 的。" source="com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck"/>
 <error line="193" column="50" severity="error" message="参数： parent 应定义为 final 的。" source="com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck"/>
 </file>
-<file name="C:\Users\Stewart\Documents\Git\SoftwareTesting\jpacman-ctgu\src\main\java\nl\tudelft\jpacman\npc\ghost\Pinky.java">
+<file name="C:\Users\Stewart\Documents\Git\SoftwareTesting\jpacman_ctgu\src\main\java\nl\tudelft\jpacman\npc\ghost\Pinky.java">
 <error line="48" severity="error" message="Line has trailing spaces." source="com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck"/>
 <error line="72" column="18" severity="error" message="参数： spriteMap 应定义为 final 的。" source="com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck"/>
 </file>
-<file name="C:\Users\Stewart\Documents\Git\SoftwareTesting\jpacman-ctgu\src\main\java\nl\tudelft\jpacman\npc\ghost\package-info.java">
+<file name="C:\Users\Stewart\Documents\Git\SoftwareTesting\jpacman_ctgu\src\main\java\nl\tudelft\jpacman\npc\ghost\package-info.java">
 </file>
-<file name="C:\Users\Stewart\Documents\Git\SoftwareTesting\jpacman-ctgu\src\main\java\nl\tudelft\jpacman\points\DefaultPointCalculator.java">
+<file name="C:\Users\Stewart\Documents\Git\SoftwareTesting\jpacman_ctgu\src\main\java\nl\tudelft\jpacman\points\DefaultPointCalculator.java">
 <error line="15" column="36" severity="error" message="参数： player 应定义为 final 的。" source="com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck"/>
 <error line="15" column="51" severity="error" message="参数： ghost 应定义为 final 的。" source="com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck"/>
 <error line="20" column="33" severity="error" message="参数： player 应定义为 final 的。" source="com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck"/>
@@ -237,11 +237,11 @@
 <error line="25" column="29" severity="error" message="参数： player 应定义为 final 的。" source="com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck"/>
 <error line="25" column="44" severity="error" message="参数： direction 应定义为 final 的。" source="com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck"/>
 </file>
-<file name="C:\Users\Stewart\Documents\Git\SoftwareTesting\jpacman-ctgu\src\main\java\nl\tudelft\jpacman\points\PointCalculator.java">
+<file name="C:\Users\Stewart\Documents\Git\SoftwareTesting\jpacman_ctgu\src\main\java\nl\tudelft\jpacman\points\PointCalculator.java">
 </file>
-<file name="C:\Users\Stewart\Documents\Git\SoftwareTesting\jpacman-ctgu\src\main\java\nl\tudelft\jpacman\points\PointCalculatorLoader.java">
+<file name="C:\Users\Stewart\Documents\Git\SoftwareTesting\jpacman_ctgu\src\main\java\nl\tudelft\jpacman\points\PointCalculatorLoader.java">
 </file>
-<file name="C:\Users\Stewart\Documents\Git\SoftwareTesting\jpacman-ctgu\src\main\java\nl\tudelft\jpacman\sprite\AnimatedSprite.java">
+<file name="C:\Users\Stewart\Documents\Git\SoftwareTesting\jpacman_ctgu\src\main\java\nl\tudelft\jpacman\sprite\AnimatedSprite.java">
 <error line="9" severity="error" message="Line has trailing spaces." source="com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck"/>
 <error line="59" column="27" severity="error" message="参数： frames 应定义为 final 的。" source="com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck"/>
 <error line="59" column="44" severity="error" message="参数： delay 应定义为 final 的。" source="com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck"/>
@@ -261,7 +261,7 @@
 <error line="126" column="39" severity="error" message="参数： width 应定义为 final 的。" source="com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck"/>
 <error line="126" column="50" severity="error" message="参数： height 应定义为 final 的。" source="com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck"/>
 </file>
-<file name="C:\Users\Stewart\Documents\Git\SoftwareTesting\jpacman-ctgu\src\main\java\nl\tudelft\jpacman\sprite\EmptySprite.java">
+<file name="C:\Users\Stewart\Documents\Git\SoftwareTesting\jpacman_ctgu\src\main\java\nl\tudelft\jpacman\sprite\EmptySprite.java">
 <error line="9" severity="error" message="Line has trailing spaces." source="com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck"/>
 <error line="14" column="22" severity="error" message="参数： graphics 应定义为 final 的。" source="com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck"/>
 <error line="14" column="41" severity="error" message="参数： x 应定义为 final 的。" source="com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck"/>
@@ -273,7 +273,7 @@
 <error line="19" column="39" severity="error" message="参数： width 应定义为 final 的。" source="com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck"/>
 <error line="19" column="50" severity="error" message="参数： height 应定义为 final 的。" source="com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck"/>
 </file>
-<file name="C:\Users\Stewart\Documents\Git\SoftwareTesting\jpacman-ctgu\src\main\java\nl\tudelft\jpacman\sprite\ImageSprite.java">
+<file name="C:\Users\Stewart\Documents\Git\SoftwareTesting\jpacman_ctgu\src\main\java\nl\tudelft\jpacman\sprite\ImageSprite.java">
 <error line="13" severity="error" message="Line has trailing spaces." source="com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck"/>
 <error line="28" column="24" severity="error" message="参数： img 应定义为 final 的。" source="com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck"/>
 <error line="33" column="22" severity="error" message="参数： graphics 应定义为 final 的。" source="com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck"/>
@@ -290,17 +290,17 @@
 <error line="64" column="36" severity="error" message="参数： width 应定义为 final 的。" source="com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck"/>
 <error line="64" column="47" severity="error" message="参数： height 应定义为 final 的。" source="com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck"/>
 </file>
-<file name="C:\Users\Stewart\Documents\Git\SoftwareTesting\jpacman-ctgu\src\main\java\nl\tudelft\jpacman\sprite\PacManSprites.java">
+<file name="C:\Users\Stewart\Documents\Git\SoftwareTesting\jpacman_ctgu\src\main\java\nl\tudelft\jpacman\sprite\PacManSprites.java">
 <error line="14" severity="error" message="Line has trailing spaces." source="com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck"/>
 <error line="84" column="52" severity="error" message="参数： resource 应定义为 final 的。" source="com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck"/>
 <error line="84" column="69" severity="error" message="参数： frames 应定义为 final 的。" source="com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck"/>
 <error line="107" column="50" severity="error" message="参数： color 应定义为 final 的。" source="com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck"/>
 <error line="144" column="30" severity="error" message="参数： resource 应定义为 final 的。" source="com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck"/>
 </file>
-<file name="C:\Users\Stewart\Documents\Git\SoftwareTesting\jpacman-ctgu\src\main\java\nl\tudelft\jpacman\sprite\Sprite.java">
+<file name="C:\Users\Stewart\Documents\Git\SoftwareTesting\jpacman_ctgu\src\main\java\nl\tudelft\jpacman\sprite\Sprite.java">
 <error line="8" severity="error" message="Line has trailing spaces." source="com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck"/>
 </file>
-<file name="C:\Users\Stewart\Documents\Git\SoftwareTesting\jpacman-ctgu\src\main\java\nl\tudelft\jpacman\sprite\SpriteStore.java">
+<file name="C:\Users\Stewart\Documents\Git\SoftwareTesting\jpacman_ctgu\src\main\java\nl\tudelft\jpacman\sprite\SpriteStore.java">
 <error line="16" severity="error" message="Line has trailing spaces." source="com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck"/>
 <error line="44" column="30" severity="error" message="参数： resource 应定义为 final 的。" source="com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck"/>
 <error line="66" column="43" severity="error" message="参数： resource 应定义为 final 的。" source="com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck"/>
@@ -309,10 +309,10 @@
 <error line="90" column="48" severity="error" message="参数： delay 应定义为 final 的。" source="com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck"/>
 <error line="90" column="59" severity="error" message="参数： loop 应定义为 final 的。" source="com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck"/>
 </file>
-<file name="C:\Users\Stewart\Documents\Git\SoftwareTesting\jpacman-ctgu\src\main\java\nl\tudelft\jpacman\ui\Action.java">
+<file name="C:\Users\Stewart\Documents\Git\SoftwareTesting\jpacman_ctgu\src\main\java\nl\tudelft\jpacman\ui\Action.java">
 <error line="6" severity="error" message="Line has trailing spaces." source="com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck"/>
 </file>
-<file name="C:\Users\Stewart\Documents\Git\SoftwareTesting\jpacman-ctgu\src\main\java\nl\tudelft\jpacman\ui\BoardPanel.java">
+<file name="C:\Users\Stewart\Documents\Git\SoftwareTesting\jpacman_ctgu\src\main\java\nl\tudelft\jpacman\ui\BoardPanel.java">
 <error line="17" severity="error" message="Line has trailing spaces." source="com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck"/>
 <error line="49" column="16" severity="error" message="参数： game 应定义为 final 的。" source="com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck"/>
 <error line="65" column="23" severity="error" message="参数： g 应定义为 final 的。" source="com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck"/>
@@ -326,21 +326,21 @@
 <error line="114" column="73" severity="error" message="参数： width 应定义为 final 的。" source="com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck"/>
 <error line="114" column="84" severity="error" message="参数： height 应定义为 final 的。" source="com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck"/>
 </file>
-<file name="C:\Users\Stewart\Documents\Git\SoftwareTesting\jpacman-ctgu\src\main\java\nl\tudelft\jpacman\ui\ButtonPanel.java">
+<file name="C:\Users\Stewart\Documents\Git\SoftwareTesting\jpacman_ctgu\src\main\java\nl\tudelft\jpacman\ui\ButtonPanel.java">
 <error line="12" severity="error" message="Line has trailing spaces." source="com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck"/>
 </file>
-<file name="C:\Users\Stewart\Documents\Git\SoftwareTesting\jpacman-ctgu\src\main\java\nl\tudelft\jpacman\ui\PacKeyListener.java">
+<file name="C:\Users\Stewart\Documents\Git\SoftwareTesting\jpacman_ctgu\src\main\java\nl\tudelft\jpacman\ui\PacKeyListener.java">
 <error line="10" severity="error" message="Line has trailing spaces." source="com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck"/>
 <error line="23" column="20" severity="error" message="参数： keyMappings 应定义为 final 的。" source="com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck"/>
 <error line="29" column="28" severity="error" message="参数： event 应定义为 final 的。" source="com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck"/>
 <error line="38" column="26" severity="error" message="参数： event 应定义为 final 的。" source="com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck"/>
 <error line="43" column="29" severity="error" message="参数： event 应定义为 final 的。" source="com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck"/>
 </file>
-<file name="C:\Users\Stewart\Documents\Git\SoftwareTesting\jpacman-ctgu\src\main\java\nl\tudelft\jpacman\ui\PacManUI.java">
+<file name="C:\Users\Stewart\Documents\Git\SoftwareTesting\jpacman_ctgu\src\main\java\nl\tudelft\jpacman\ui\PacManUI.java">
 <error line="28" severity="error" message="Line has trailing spaces." source="com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck"/>
 <error line="70" column="21" severity="error" message="参数： scoreFormatter 应定义为 final 的。" source="com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck"/>
 </file>
-<file name="C:\Users\Stewart\Documents\Git\SoftwareTesting\jpacman-ctgu\src\main\java\nl\tudelft\jpacman\ui\PacManUiBuilder.java">
+<file name="C:\Users\Stewart\Documents\Git\SoftwareTesting\jpacman_ctgu\src\main\java\nl\tudelft\jpacman\ui\PacManUiBuilder.java">
 <error line="13" severity="error" message="Line has trailing spaces." source="com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck"/>
 <error line="108" column="35" severity="error" message="参数： keyCode 应定义为 final 的。" source="com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck"/>
 <error line="108" column="52" severity="error" message="参数： action 应定义为 final 的。" source="com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck"/>
@@ -348,7 +348,7 @@
 <error line="125" column="54" severity="error" message="参数： action 应定义为 final 的。" source="com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck"/>
 <error line="155" column="47" severity="error" message="参数： scoreFormatter 应定义为 final 的。" source="com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck"/>
 </file>
-<file name="C:\Users\Stewart\Documents\Git\SoftwareTesting\jpacman-ctgu\src\main\java\nl\tudelft\jpacman\ui\ScorePanel.java">
+<file name="C:\Users\Stewart\Documents\Git\SoftwareTesting\jpacman_ctgu\src\main\java\nl\tudelft\jpacman\ui\ScorePanel.java">
 <error line="17" severity="error" message="Line has trailing spaces." source="com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck"/>
 <error line="49" column="23" severity="error" message="参数： players 应定义为 final 的。" source="com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck"/>
 <error line="98" column="35" severity="error" message="参数： scoreFormatter 应定义为 final 的。" source="com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck"/>

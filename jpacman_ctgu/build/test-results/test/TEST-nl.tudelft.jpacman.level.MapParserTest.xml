@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="nl.tudelft.jpacman.level.MapParserTest" tests="10" skipped="0" failures="0" errors="0" timestamp="2022-05-16T08:31:05" hostname="HUAWEIMATEBOOK" time="1.292">
+  <properties/>
+  <testcase name="parseMap(String)NotExist" classname="nl.tudelft.jpacman.level.MapParserTest" time="1.243"/>
+  <testcase name="parseMap(List&lt;String&gt;)宽度不一致" classname="nl.tudelft.jpacman.level.MapParserTest" time="0.002"/>
+  <testcase name="parseMap(List&lt;String&gt;)宽度为零" classname="nl.tudelft.jpacman.level.MapParserTest" time="0.003"/>
+  <testcase name="parseMap(char [][])IllegalChar" classname="nl.tudelft.jpacman.level.MapParserTest" time="0.007"/>
+  <testcase name="parseMap(char [][])" classname="nl.tudelft.jpacman.level.MapParserTest" time="0.016"/>
+  <testcase name="parseMap(String)Null" classname="nl.tudelft.jpacman.level.MapParserTest" time="0.002"/>
+  <testcase name="parseMap(String)" classname="nl.tudelft.jpacman.level.MapParserTest" time="0.006"/>
+  <testcase name="parseMap(List&lt;String&gt;)text为null" classname="nl.tudelft.jpacman.level.MapParserTest" time="0.002"/>
+  <testcase name="parseMap(List&lt;String&gt;)text为Empty" classname="nl.tudelft.jpacman.level.MapParserTest" time="0.002"/>
+  <testcase name="parseMap(List&lt;String&gt;)正确执行" classname="nl.tudelft.jpacman.level.MapParserTest" time="0.003"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="nl.tudelft.jpacman.integration.StartupSystemTest" tests="1" skipped="1" failures="0" errors="0" timestamp="2022-05-16T08:01:14" hostname="HUAWEIMATEBOOK" time="1.759">
+  <properties/>
+  <testcase name="gameIsRunning()" classname="nl.tudelft.jpacman.integration.StartupSystemTest" time="1.759">
+    <skipped/>
+  </testcase>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
