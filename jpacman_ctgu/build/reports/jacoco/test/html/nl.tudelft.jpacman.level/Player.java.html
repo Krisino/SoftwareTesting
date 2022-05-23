@@ -47,13 +47,13 @@ public class Player extends Unit {
      * @param deathAnimation
      *            The sprite to be shown when this player dies.
      */
-<span class="fc" id="L50">    protected Player(Map&lt;Direction, Sprite&gt; spriteMap, AnimatedSprite deathAnimation) {</span>
-<span class="fc" id="L51">        this.score = 0;</span>
-<span class="fc" id="L52">        this.alive = true;</span>
-<span class="fc" id="L53">        this.sprites = spriteMap;</span>
-<span class="fc" id="L54">        this.deathSprite = deathAnimation;</span>
-<span class="fc" id="L55">        deathSprite.setAnimating(false);</span>
-<span class="fc" id="L56">    }</span>
+<span class="nc" id="L50">    protected Player(Map&lt;Direction, Sprite&gt; spriteMap, AnimatedSprite deathAnimation) {</span>
+<span class="nc" id="L51">        this.score = 0;</span>
+<span class="nc" id="L52">        this.alive = true;</span>
+<span class="nc" id="L53">        this.sprites = spriteMap;</span>
+<span class="nc" id="L54">        this.deathSprite = deathAnimation;</span>
+<span class="nc" id="L55">        deathSprite.setAnimating(false);</span>
+<span class="nc" id="L56">    }</span>
 
     /**
      * Returns whether this player is alive or not.
@@ -61,7 +61,7 @@ public class Player extends Unit {
      * @return &lt;code&gt;true&lt;/code&gt; iff the player is alive.
      */
     public boolean isAlive() {
-<span class="fc" id="L64">        return alive;</span>
+<span class="nc" id="L64">        return alive;</span>
     }
 
     /**
@@ -73,15 +73,15 @@ public class Player extends Unit {
      *            &lt;code&gt;true&lt;/code&gt; iff this player is alive.
      */
     public void setAlive(boolean isAlive) {
-<span class="pc bpc" id="L76" title="1 of 2 branches missed.">        if (isAlive) {</span>
+<span class="nc bnc" id="L76" title="All 2 branches missed.">        if (isAlive) {</span>
 <span class="nc" id="L77">            deathSprite.setAnimating(false);</span>
 <span class="nc" id="L78">            this.killer = null;</span>
         }
-<span class="pc bpc" id="L80" title="1 of 2 branches missed.">        if (!isAlive) {</span>
-<span class="fc" id="L81">            deathSprite.restart();</span>
+<span class="nc bnc" id="L80" title="All 2 branches missed.">        if (!isAlive) {</span>
+<span class="nc" id="L81">            deathSprite.restart();</span>
         }
-<span class="fc" id="L83">        this.alive = isAlive;</span>
-<span class="fc" id="L84">    }</span>
+<span class="nc" id="L83">        this.alive = isAlive;</span>
+<span class="nc" id="L84">    }</span>
 
     /**
      * Returns the unit that caused the death of Pac-Man.
@@ -98,8 +98,8 @@ public class Player extends Unit {
      * @param killer is set if collision with ghost happens.
      */
     public void setKiller(Unit killer) {
-<span class="fc" id="L101">        this.killer =  killer;</span>
-<span class="fc" id="L102">    }</span>
+<span class="nc" id="L101">        this.killer =  killer;</span>
+<span class="nc" id="L102">    }</span>
 
     /**
      * Returns the amount of points accumulated by this player.
@@ -107,15 +107,15 @@ public class Player extends Unit {
      * @return The amount of points accumulated by this player.
      */
     public int getScore() {
-<span class="fc" id="L110">        return score;</span>
+<span class="nc" id="L110">        return score;</span>
     }
 
     @Override
     public Sprite getSprite() {
-<span class="fc bfc" id="L115" title="All 2 branches covered.">        if (isAlive()) {</span>
-<span class="fc" id="L116">            return sprites.get(getDirection());</span>
+<span class="nc bnc" id="L115" title="All 2 branches missed.">        if (isAlive()) {</span>
+<span class="nc" id="L116">            return sprites.get(getDirection());</span>
         }
-<span class="fc" id="L118">        return deathSprite;</span>
+<span class="nc" id="L118">        return deathSprite;</span>
     }
 
     /**
@@ -126,7 +126,7 @@ public class Player extends Unit {
      *            has.
      */
     public void addPoints(int points) {
-<span class="fc" id="L129">        score += points;</span>
-<span class="fc" id="L130">    }</span>
+<span class="nc" id="L129">        score += points;</span>
+<span class="nc" id="L130">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

@@ -26,13 +26,13 @@ import nl.tudelft.jpacman.ui.PacManUiBuilder;
  * 
  * @author Jeroen Roosen
  */
-<span class="pc bpc" id="L29" title="1 of 2 branches missed.">@SuppressWarnings(&quot;PMD.TooManyMethods&quot;)</span>
-<span class="fc" id="L30">public class Launcher {</span>
+<span class="nc bnc" id="L29" title="All 2 branches missed.">@SuppressWarnings(&quot;PMD.TooManyMethods&quot;)</span>
+<span class="nc" id="L30">public class Launcher {</span>
 
-<span class="fc" id="L32">    private static final PacManSprites SPRITE_STORE = new PacManSprites();</span>
+<span class="nc" id="L32">    private static final PacManSprites SPRITE_STORE = new PacManSprites();</span>
 
     public static final String DEFAULT_MAP = &quot;/board.txt&quot;;
-<span class="fc" id="L35">    private String levelMap = DEFAULT_MAP;</span>
+<span class="nc" id="L35">    private String levelMap = DEFAULT_MAP;</span>
 
     private PacManUI pacManUI;
     private Game game;
@@ -42,7 +42,7 @@ import nl.tudelft.jpacman.ui.PacManUiBuilder;
      *         is called.
      */
     public Game getGame() {
-<span class="fc" id="L45">        return game;</span>
+<span class="nc" id="L45">        return game;</span>
     }
 
     /**
@@ -51,7 +51,7 @@ import nl.tudelft.jpacman.ui.PacManUiBuilder;
      * @return The name of the map file.
      */
     protected String getLevelMap() {
-<span class="fc" id="L54">        return levelMap;</span>
+<span class="nc" id="L54">        return levelMap;</span>
     }
 
     /**
@@ -72,14 +72,14 @@ import nl.tudelft.jpacman.ui.PacManUiBuilder;
      * @return a new Game.
      */
     public Game makeGame() {
-<span class="fc" id="L75">        GameFactory gf = getGameFactory();</span>
-<span class="fc" id="L76">        Level level = makeLevel();</span>
-<span class="fc" id="L77">        game = gf.createSinglePlayerGame(level, loadPointCalculator());</span>
-<span class="fc" id="L78">        return game;</span>
+<span class="nc" id="L75">        GameFactory gf = getGameFactory();</span>
+<span class="nc" id="L76">        Level level = makeLevel();</span>
+<span class="nc" id="L77">        game = gf.createSinglePlayerGame(level, loadPointCalculator());</span>
+<span class="nc" id="L78">        return game;</span>
     }
 
     private PointCalculator loadPointCalculator() {
-<span class="fc" id="L82">        return new PointCalculatorLoader().load();</span>
+<span class="nc" id="L82">        return new PointCalculatorLoader().load();</span>
     }
 
     /**
@@ -90,7 +90,7 @@ import nl.tudelft.jpacman.ui.PacManUiBuilder;
      */
     public Level makeLevel() {
         try {
-<span class="fc" id="L93">            return getMapParser().parseMap(getLevelMap());</span>
+<span class="nc" id="L93">            return getMapParser().parseMap(getLevelMap());</span>
 <span class="nc" id="L94">        } catch (IOException e) {</span>
 <span class="nc" id="L95">            throw new PacmanConfigurationException(</span>
 <span class="nc" id="L96">                    &quot;Unable to create level, name = &quot; + getLevelMap(), e);</span>
@@ -102,7 +102,7 @@ import nl.tudelft.jpacman.ui.PacManUiBuilder;
      *         {@link #getLevelFactory()} and {@link #getBoardFactory()}.
      */
     protected MapParser getMapParser() {
-<span class="fc" id="L105">        return new MapParser(getLevelFactory(), getBoardFactory());</span>
+<span class="nc" id="L105">        return new MapParser(getLevelFactory(), getBoardFactory());</span>
     }
 
     /**
@@ -110,14 +110,14 @@ import nl.tudelft.jpacman.ui.PacManUiBuilder;
      *         {@link #getSpriteStore()}.
      */
     protected BoardFactory getBoardFactory() {
-<span class="fc" id="L113">        return new BoardFactory(getSpriteStore());</span>
+<span class="nc" id="L113">        return new BoardFactory(getSpriteStore());</span>
     }
 
     /**
      * @return The default {@link PacManSprites}.
      */
     protected PacManSprites getSpriteStore() {
-<span class="fc" id="L120">        return SPRITE_STORE;</span>
+<span class="nc" id="L120">        return SPRITE_STORE;</span>
     }
 
     /**
@@ -125,28 +125,28 @@ import nl.tudelft.jpacman.ui.PacManUiBuilder;
      *         and the ghosts from {@link #getGhostFactory()}.
      */
     protected LevelFactory getLevelFactory() {
-<span class="fc" id="L128">        return new LevelFactory(getSpriteStore(), getGhostFactory(), loadPointCalculator());</span>
+<span class="nc" id="L128">        return new LevelFactory(getSpriteStore(), getGhostFactory(), loadPointCalculator());</span>
     }
 
     /**
      * @return A new factory using the sprites from {@link #getSpriteStore()}.
      */
     protected GhostFactory getGhostFactory() {
-<span class="fc" id="L135">        return new GhostFactory(getSpriteStore());</span>
+<span class="nc" id="L135">        return new GhostFactory(getSpriteStore());</span>
     }
 
     /**
      * @return A new factory using the players from {@link #getPlayerFactory()}.
      */
     protected GameFactory getGameFactory() {
-<span class="fc" id="L142">        return new GameFactory(getPlayerFactory());</span>
+<span class="nc" id="L142">        return new GameFactory(getPlayerFactory());</span>
     }
 
     /**
      * @return A new factory using the sprites from {@link #getSpriteStore()}.
      */
     protected PlayerFactory getPlayerFactory() {
-<span class="fc" id="L149">        return new PlayerFactory(getSpriteStore());</span>
+<span class="nc" id="L149">        return new PlayerFactory(getSpriteStore());</span>
     }
 
     /**
@@ -156,14 +156,14 @@ import nl.tudelft.jpacman.ui.PacManUiBuilder;
      *            The {@link PacManUiBuilder} that will provide the UI.
      */
     protected void addSinglePlayerKeys(final PacManUiBuilder builder) {
-<span class="fc" id="L159">        builder.addKey(KeyEvent.VK_UP, moveTowardsDirection(Direction.NORTH))</span>
-<span class="fc" id="L160">                .addKey(KeyEvent.VK_DOWN, moveTowardsDirection(Direction.SOUTH))</span>
-<span class="fc" id="L161">                .addKey(KeyEvent.VK_LEFT, moveTowardsDirection(Direction.WEST))</span>
-<span class="fc" id="L162">                .addKey(KeyEvent.VK_RIGHT, moveTowardsDirection(Direction.EAST));</span>
-<span class="fc" id="L163">    }</span>
+<span class="nc" id="L159">        builder.addKey(KeyEvent.VK_UP, moveTowardsDirection(Direction.NORTH))</span>
+<span class="nc" id="L160">                .addKey(KeyEvent.VK_DOWN, moveTowardsDirection(Direction.SOUTH))</span>
+<span class="nc" id="L161">                .addKey(KeyEvent.VK_LEFT, moveTowardsDirection(Direction.WEST))</span>
+<span class="nc" id="L162">                .addKey(KeyEvent.VK_RIGHT, moveTowardsDirection(Direction.EAST));</span>
+<span class="nc" id="L163">    }</span>
 
     private Action moveTowardsDirection(Direction direction) {
-<span class="fc" id="L166">        return () -&gt; {</span>
+<span class="nc" id="L166">        return () -&gt; {</span>
 <span class="nc bnc" id="L167" title="All 4 branches missed.">            assert game != null;</span>
 <span class="nc" id="L168">            getGame().move(getSinglePlayer(getGame()), direction);</span>
 <span class="nc" id="L169">        };</span>
@@ -181,12 +181,12 @@ import nl.tudelft.jpacman.ui.PacManUiBuilder;
      * Creates and starts a JPac-Man game.
      */
     public void launch() {
-<span class="fc" id="L184">        makeGame();</span>
-<span class="fc" id="L185">        PacManUiBuilder builder = new PacManUiBuilder().withDefaultButtons();</span>
-<span class="fc" id="L186">        addSinglePlayerKeys(builder);</span>
-<span class="fc" id="L187">        pacManUI = builder.build(getGame());</span>
-<span class="fc" id="L188">        pacManUI.start();</span>
-<span class="fc" id="L189">    }</span>
+<span class="nc" id="L184">        makeGame();</span>
+<span class="nc" id="L185">        PacManUiBuilder builder = new PacManUiBuilder().withDefaultButtons();</span>
+<span class="nc" id="L186">        addSinglePlayerKeys(builder);</span>
+<span class="nc" id="L187">        pacManUI = builder.build(getGame());</span>
+<span class="nc" id="L188">        pacManUI.start();</span>
+<span class="nc" id="L189">    }</span>
 
     /**
      * Disposes of the UI. For more information see
@@ -195,9 +195,9 @@ import nl.tudelft.jpacman.ui.PacManUiBuilder;
      * Precondition: The game was launched first.
      */
     public void dispose() {
-<span class="pc bpc" id="L198" title="2 of 4 branches missed.">        assert pacManUI != null;</span>
-<span class="fc" id="L199">        pacManUI.dispose();</span>
-<span class="fc" id="L200">    }</span>
+<span class="nc bnc" id="L198" title="All 4 branches missed.">        assert pacManUI != null;</span>
+<span class="nc" id="L199">        pacManUI.dispose();</span>
+<span class="nc" id="L200">    }</span>
 
     /**
      * Main execution method for the Launcher.

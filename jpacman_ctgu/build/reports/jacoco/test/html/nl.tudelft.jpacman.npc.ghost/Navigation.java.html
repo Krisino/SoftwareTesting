@@ -15,7 +15,7 @@ import nl.tudelft.jpacman.board.Unit;
  *
  * @author Jeroen Roosen 
  */
-<span class="pc bpc" id="L18" title="1 of 2 branches missed.">public final class Navigation {</span>
+<span class="nc bnc" id="L18" title="All 2 branches missed.">public final class Navigation {</span>
 
     private Navigation() {
     }
@@ -41,35 +41,35 @@ import nl.tudelft.jpacman.board.Unit;
      */
     public static List&lt;Direction&gt; shortestPath(Square from, Square to,
                                                          Unit traveller) {
-<span class="pc bpc" id="L44" title="1 of 2 branches missed.">        if (from.equals(to)) {</span>
+<span class="nc bnc" id="L44" title="All 2 branches missed.">        if (from.equals(to)) {</span>
 <span class="nc" id="L45">            return new ArrayList&lt;&gt;();</span>
         }
 
-<span class="fc" id="L48">        List&lt;Node&gt; targets = new ArrayList&lt;&gt;();</span>
-<span class="fc" id="L49">        Set&lt;Square&gt; visited = new HashSet&lt;&gt;();</span>
-<span class="fc" id="L50">        targets.add(new Node(null, from, null));</span>
-<span class="pc bpc" id="L51" title="1 of 2 branches missed.">        while (!targets.isEmpty()) {</span>
-<span class="fc" id="L52">            Node node = targets.remove(0);</span>
-<span class="fc" id="L53">            Square square = node.getSquare();</span>
-<span class="fc bfc" id="L54" title="All 2 branches covered.">            if (square.equals(to)) {</span>
-<span class="fc" id="L55">                return node.getPath();</span>
+<span class="nc" id="L48">        List&lt;Node&gt; targets = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L49">        Set&lt;Square&gt; visited = new HashSet&lt;&gt;();</span>
+<span class="nc" id="L50">        targets.add(new Node(null, from, null));</span>
+<span class="nc bnc" id="L51" title="All 2 branches missed.">        while (!targets.isEmpty()) {</span>
+<span class="nc" id="L52">            Node node = targets.remove(0);</span>
+<span class="nc" id="L53">            Square square = node.getSquare();</span>
+<span class="nc bnc" id="L54" title="All 2 branches missed.">            if (square.equals(to)) {</span>
+<span class="nc" id="L55">                return node.getPath();</span>
             }
-<span class="fc" id="L57">            visited.add(square);</span>
-<span class="fc" id="L58">            addNewTargets(traveller, targets, visited, node, square);</span>
-<span class="fc" id="L59">        }</span>
+<span class="nc" id="L57">            visited.add(square);</span>
+<span class="nc" id="L58">            addNewTargets(traveller, targets, visited, node, square);</span>
+<span class="nc" id="L59">        }</span>
 <span class="nc" id="L60">        return null;</span>
     }
 
     private static void addNewTargets(Unit traveller, List&lt;Node&gt; targets,
                                       Set&lt;Square&gt; visited, Node node, Square square) {
-<span class="fc bfc" id="L65" title="All 2 branches covered.">        for (Direction direction : Direction.values()) {</span>
-<span class="fc" id="L66">            Square target = square.getSquareAt(direction);</span>
-<span class="pc bpc" id="L67" title="1 of 4 branches missed.">            if (!visited.contains(target)</span>
-<span class="fc bfc" id="L68" title="All 2 branches covered.">                &amp;&amp; (traveller == null || target.isAccessibleTo(traveller))) {</span>
-<span class="fc" id="L69">                targets.add(new Node(direction, target, node));</span>
+<span class="nc bnc" id="L65" title="All 2 branches missed.">        for (Direction direction : Direction.values()) {</span>
+<span class="nc" id="L66">            Square target = square.getSquareAt(direction);</span>
+<span class="nc bnc" id="L67" title="All 4 branches missed.">            if (!visited.contains(target)</span>
+<span class="nc bnc" id="L68" title="All 2 branches missed.">                &amp;&amp; (traveller == null || target.isAccessibleTo(traveller))) {</span>
+<span class="nc" id="L69">                targets.add(new Node(direction, target, node));</span>
             }
         }
-<span class="fc" id="L72">    }</span>
+<span class="nc" id="L72">    }</span>
 
     /**
      * Finds the nearest unit of the given type and returns its location. This
@@ -85,26 +85,26 @@ import nl.tudelft.jpacman.board.Unit;
      */
     public static Unit findNearest(Class&lt;? extends Unit&gt; type,
                                              Square currentLocation) {
-<span class="fc" id="L88">        List&lt;Square&gt; toDo = new ArrayList&lt;&gt;();</span>
-<span class="fc" id="L89">        Set&lt;Square&gt; visited = new HashSet&lt;&gt;();</span>
+<span class="nc" id="L88">        List&lt;Square&gt; toDo = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L89">        Set&lt;Square&gt; visited = new HashSet&lt;&gt;();</span>
 
-<span class="fc" id="L91">        toDo.add(currentLocation);</span>
+<span class="nc" id="L91">        toDo.add(currentLocation);</span>
 
-<span class="pc bpc" id="L93" title="1 of 2 branches missed.">        while (!toDo.isEmpty()) {</span>
-<span class="fc" id="L94">            Square square = toDo.remove(0);</span>
-<span class="fc" id="L95">            Unit unit = findUnit(type, square);</span>
-<span class="fc bfc" id="L96" title="All 2 branches covered.">            if (unit != null) {</span>
-<span class="pc bpc" id="L97" title="2 of 4 branches missed.">                assert unit.hasSquare();</span>
-<span class="fc" id="L98">                return unit;</span>
+<span class="nc bnc" id="L93" title="All 2 branches missed.">        while (!toDo.isEmpty()) {</span>
+<span class="nc" id="L94">            Square square = toDo.remove(0);</span>
+<span class="nc" id="L95">            Unit unit = findUnit(type, square);</span>
+<span class="nc bnc" id="L96" title="All 2 branches missed.">            if (unit != null) {</span>
+<span class="nc bnc" id="L97" title="All 4 branches missed.">                assert unit.hasSquare();</span>
+<span class="nc" id="L98">                return unit;</span>
             }
-<span class="fc" id="L100">            visited.add(square);</span>
-<span class="fc bfc" id="L101" title="All 2 branches covered.">            for (Direction direction : Direction.values()) {</span>
-<span class="fc" id="L102">                Square newTarget = square.getSquareAt(direction);</span>
-<span class="fc bfc" id="L103" title="All 4 branches covered.">                if (!visited.contains(newTarget) &amp;&amp; !toDo.contains(newTarget)) {</span>
-<span class="fc" id="L104">                    toDo.add(newTarget);</span>
+<span class="nc" id="L100">            visited.add(square);</span>
+<span class="nc bnc" id="L101" title="All 2 branches missed.">            for (Direction direction : Direction.values()) {</span>
+<span class="nc" id="L102">                Square newTarget = square.getSquareAt(direction);</span>
+<span class="nc bnc" id="L103" title="All 4 branches missed.">                if (!visited.contains(newTarget) &amp;&amp; !toDo.contains(newTarget)) {</span>
+<span class="nc" id="L104">                    toDo.add(newTarget);</span>
                 }
             }
-<span class="fc" id="L107">        }</span>
+<span class="nc" id="L107">        }</span>
 <span class="nc" id="L108">        return null;</span>
     }
 
@@ -146,13 +146,13 @@ import nl.tudelft.jpacman.board.Unit;
      */
     @SuppressWarnings(&quot;unchecked&quot;)
     public static &lt;T extends Unit&gt; T findUnit(Class&lt;T&gt; type, Square square) {
-<span class="fc bfc" id="L149" title="All 2 branches covered.">        for (Unit unit : square.getOccupants()) {</span>
-<span class="fc bfc" id="L150" title="All 2 branches covered.">            if (type.isInstance(unit)) {</span>
-<span class="pc bpc" id="L151" title="2 of 4 branches missed.">                assert unit.hasSquare();</span>
-<span class="fc" id="L152">                return (T) unit;</span>
+<span class="nc bnc" id="L149" title="All 2 branches missed.">        for (Unit unit : square.getOccupants()) {</span>
+<span class="nc bnc" id="L150" title="All 2 branches missed.">            if (type.isInstance(unit)) {</span>
+<span class="nc bnc" id="L151" title="All 4 branches missed.">                assert unit.hasSquare();</span>
+<span class="nc" id="L152">                return (T) unit;</span>
             }
-<span class="fc" id="L154">        }</span>
-<span class="fc" id="L155">        return null;</span>
+<span class="nc" id="L154">        }</span>
+<span class="nc" id="L155">        return null;</span>
     }
 
     /**
@@ -190,25 +190,25 @@ import nl.tudelft.jpacman.board.Unit;
          *            The parent node, which is &lt;code&gt;null&lt;/code&gt; for the root
          *            node.
          */
-<span class="fc" id="L193">        Node(Direction direction, Square square, Node parent) {</span>
-<span class="fc" id="L194">            this.direction = direction;</span>
-<span class="fc" id="L195">            this.square = square;</span>
-<span class="fc" id="L196">            this.parent = parent;</span>
-<span class="fc" id="L197">        }</span>
+<span class="nc" id="L193">        Node(Direction direction, Square square, Node parent) {</span>
+<span class="nc" id="L194">            this.direction = direction;</span>
+<span class="nc" id="L195">            this.square = square;</span>
+<span class="nc" id="L196">            this.parent = parent;</span>
+<span class="nc" id="L197">        }</span>
 
         /**
          * @return The direction for this node, or &lt;code&gt;null&lt;/code&gt; if this
          *         node is a root node.
          */
         private Direction getDirection() {
-<span class="fc" id="L204">            return direction;</span>
+<span class="nc" id="L204">            return direction;</span>
         }
 
         /**
          * @return The square for this node.
          */
         private Square getSquare() {
-<span class="fc" id="L211">            return square;</span>
+<span class="nc" id="L211">            return square;</span>
         }
 
         /**
@@ -225,12 +225,12 @@ import nl.tudelft.jpacman.board.Unit;
          * @return The list of values from the root of the tree to this node.
          */
         private List&lt;Direction&gt; getPath() {
-<span class="fc bfc" id="L228" title="All 2 branches covered.">            if (parent == null) {</span>
-<span class="fc" id="L229">                return new ArrayList&lt;&gt;();</span>
+<span class="nc bnc" id="L228" title="All 2 branches missed.">            if (parent == null) {</span>
+<span class="nc" id="L229">                return new ArrayList&lt;&gt;();</span>
             }
-<span class="fc" id="L231">            List&lt;Direction&gt; path = parent.getPath();</span>
-<span class="fc" id="L232">            path.add(getDirection());</span>
-<span class="fc" id="L233">            return path;</span>
+<span class="nc" id="L231">            List&lt;Direction&gt; path = parent.getPath();</span>
+<span class="nc" id="L232">            path.add(getDirection());</span>
+<span class="nc" id="L233">            return path;</span>
         }
     }
 }

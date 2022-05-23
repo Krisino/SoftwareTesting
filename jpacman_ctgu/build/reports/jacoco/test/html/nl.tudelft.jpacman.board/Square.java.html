@@ -14,7 +14,7 @@ import nl.tudelft.jpacman.sprite.Sprite;
  *
  * @author Jeroen Roosen 
  */
-<span class="pc bpc" id="L17" title="1 of 2 branches missed.">public abstract class Square {</span>
+<span class="nc bnc" id="L17" title="All 2 branches missed.">public abstract class Square {</span>
 
     /**
      * The units occupying this square, in order of appearance.
@@ -29,11 +29,11 @@ import nl.tudelft.jpacman.sprite.Sprite;
     /**
      * Creates a new, empty square.
      */
-<span class="fc" id="L32">    protected Square() {</span>
-<span class="fc" id="L33">        this.occupants = new ArrayList&lt;&gt;();</span>
-<span class="fc" id="L34">        this.neighbours = new EnumMap&lt;&gt;(Direction.class);</span>
-<span class="pc bpc" id="L35" title="2 of 4 branches missed.">        assert invariant();</span>
-<span class="fc" id="L36">    }</span>
+<span class="nc" id="L32">    protected Square() {</span>
+<span class="nc" id="L33">        this.occupants = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L34">        this.neighbours = new EnumMap&lt;&gt;(Direction.class);</span>
+<span class="nc bnc" id="L35" title="All 4 branches missed.">        assert invariant();</span>
+<span class="nc" id="L36">    }</span>
 
     /**
      * Returns the square adjacent to this square.
@@ -43,7 +43,7 @@ import nl.tudelft.jpacman.sprite.Sprite;
      * @return The adjacent square in the given direction.
      */
     public Square getSquareAt(Direction direction) {
-<span class="fc" id="L46">        return neighbours.get(direction);</span>
+<span class="nc" id="L46">        return neighbours.get(direction);</span>
     }
 
     /**
@@ -56,9 +56,9 @@ import nl.tudelft.jpacman.sprite.Sprite;
      *            The direction the new neighbour is in, as seen from this cell.
      */
     public void link(Square neighbour, Direction direction) {
-<span class="fc" id="L59">        neighbours.put(direction, neighbour);</span>
-<span class="pc bpc" id="L60" title="2 of 4 branches missed.">        assert invariant();</span>
-<span class="fc" id="L61">    }</span>
+<span class="nc" id="L59">        neighbours.put(direction, neighbour);</span>
+<span class="nc bnc" id="L60" title="All 4 branches missed.">        assert invariant();</span>
+<span class="nc" id="L61">    }</span>
 
     /**
      * Returns an immutable list of units occupying this square, in the order in
@@ -68,7 +68,7 @@ import nl.tudelft.jpacman.sprite.Sprite;
      *         which they occupied this square (i.e. oldest first.)
      */
     public List&lt;Unit&gt; getOccupants() {
-<span class="fc" id="L71">        return ImmutableList.copyOf(occupants);</span>
+<span class="nc" id="L71">        return ImmutableList.copyOf(occupants);</span>
     }
 
     /**
@@ -78,11 +78,11 @@ import nl.tudelft.jpacman.sprite.Sprite;
      *            The unit to occupy this square.
      */
     void put(Unit occupant) {
-<span class="pc bpc" id="L81" title="2 of 4 branches missed.">        assert occupant != null;</span>
-<span class="pc bpc" id="L82" title="2 of 4 branches missed.">        assert !occupants.contains(occupant);</span>
+<span class="nc bnc" id="L81" title="All 4 branches missed.">        assert occupant != null;</span>
+<span class="nc bnc" id="L82" title="All 4 branches missed.">        assert !occupants.contains(occupant);</span>
 
-<span class="fc" id="L84">        occupants.add(occupant);</span>
-<span class="fc" id="L85">    }</span>
+<span class="nc" id="L84">        occupants.add(occupant);</span>
+<span class="nc" id="L85">    }</span>
 
     /**
      * Removes the unit from this square if it was present.
@@ -91,9 +91,9 @@ import nl.tudelft.jpacman.sprite.Sprite;
      *            The unit to be removed from this square.
      */
     void remove(Unit occupant) {
-<span class="pc bpc" id="L94" title="2 of 4 branches missed.">        assert occupant != null;</span>
-<span class="fc" id="L95">        occupants.remove(occupant);</span>
-<span class="fc" id="L96">    }</span>
+<span class="nc bnc" id="L94" title="All 4 branches missed.">        assert occupant != null;</span>
+<span class="nc" id="L95">        occupants.remove(occupant);</span>
+<span class="nc" id="L96">    }</span>
 
     /**
      * Verifies that all occupants on this square have indeed listed this square
@@ -103,12 +103,12 @@ import nl.tudelft.jpacman.sprite.Sprite;
      *         square listed as the square they are currently occupying.
      */
     protected final boolean invariant(Square this) {
-<span class="fc bfc" id="L106" title="All 2 branches covered.">        for (Unit occupant : occupants) {</span>
-<span class="pc bpc" id="L107" title="2 of 4 branches missed.">            if (occupant.hasSquare() &amp;&amp; occupant.getSquare() != this) {</span>
+<span class="nc bnc" id="L106" title="All 2 branches missed.">        for (Unit occupant : occupants) {</span>
+<span class="nc bnc" id="L107" title="All 4 branches missed.">            if (occupant.hasSquare() &amp;&amp; occupant.getSquare() != this) {</span>
 <span class="nc" id="L108">                return false;</span>
             }
-<span class="fc" id="L110">        }</span>
-<span class="fc" id="L111">        return true;</span>
+<span class="nc" id="L110">        }</span>
+<span class="nc" id="L111">        return true;</span>
     }
 
     /**

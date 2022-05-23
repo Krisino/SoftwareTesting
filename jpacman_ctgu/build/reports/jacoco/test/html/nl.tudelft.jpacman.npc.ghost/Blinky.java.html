@@ -40,7 +40,7 @@ import nl.tudelft.jpacman.sprite.Sprite;
  * @author Jeroen Roosen 
  *
  */
-<span class="pc bpc" id="L43" title="1 of 2 branches missed.">public class Blinky extends Ghost {</span>
+<span class="nc bnc" id="L43" title="All 2 branches missed.">public class Blinky extends Ghost {</span>
 
     /**
      * The variation in intervals, this makes the ghosts look more dynamic and
@@ -62,8 +62,8 @@ import nl.tudelft.jpacman.sprite.Sprite;
     // TODO Blinky should speed up when there are a few pellets left, but he
     // has no way to find out how many there are.
     public Blinky(Map&lt;Direction, Sprite&gt; spriteMap) {
-<span class="fc" id="L65">        super(spriteMap, MOVE_INTERVAL, INTERVAL_VARIATION);</span>
-<span class="fc" id="L66">    }</span>
+<span class="nc" id="L65">        super(spriteMap, MOVE_INTERVAL, INTERVAL_VARIATION);</span>
+<span class="nc" id="L66">    }</span>
 
     /**
      * {@inheritDoc}
@@ -80,20 +80,20 @@ import nl.tudelft.jpacman.sprite.Sprite;
      */
     @Override
     public Optional&lt;Direction&gt; nextAiMove() {
-<span class="pc bpc" id="L83" title="2 of 4 branches missed.">        assert hasSquare();</span>
+<span class="nc bnc" id="L83" title="All 4 branches missed.">        assert hasSquare();</span>
 
         // TODO Blinky should patrol his corner every once in a while
         // TODO Implement his actual behaviour instead of simply chasing.
-<span class="fc" id="L87">        Unit nearest = Navigation.findNearest(Player.class, getSquare());</span>
-<span class="pc bpc" id="L88" title="1 of 2 branches missed.">        if (nearest == null) {</span>
+<span class="nc" id="L87">        Unit nearest = Navigation.findNearest(Player.class, getSquare());</span>
+<span class="nc bnc" id="L88" title="All 2 branches missed.">        if (nearest == null) {</span>
 <span class="nc" id="L89">            return Optional.empty();</span>
         }
-<span class="pc bpc" id="L91" title="2 of 4 branches missed.">        assert nearest.hasSquare();</span>
-<span class="fc" id="L92">        Square target = nearest.getSquare();</span>
+<span class="nc bnc" id="L91" title="All 4 branches missed.">        assert nearest.hasSquare();</span>
+<span class="nc" id="L92">        Square target = nearest.getSquare();</span>
 
-<span class="fc" id="L94">        List&lt;Direction&gt; path = Navigation.shortestPath(getSquare(), target, this);</span>
-<span class="pc bpc" id="L95" title="2 of 4 branches missed.">        if (path != null &amp;&amp; !path.isEmpty()) {</span>
-<span class="fc" id="L96">            return Optional.ofNullable(path.get(0));</span>
+<span class="nc" id="L94">        List&lt;Direction&gt; path = Navigation.shortestPath(getSquare(), target, this);</span>
+<span class="nc bnc" id="L95" title="All 4 branches missed.">        if (path != null &amp;&amp; !path.isEmpty()) {</span>
+<span class="nc" id="L96">            return Optional.ofNullable(path.get(0));</span>
         }
 <span class="nc" id="L98">        return Optional.empty();</span>
     }

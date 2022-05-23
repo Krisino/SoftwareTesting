@@ -42,7 +42,7 @@ public abstract class Ghost extends Unit {
      * be devised.
      */
     public Direction nextMove() {
-<span class="fc" id="L45">        return nextAiMove().orElseGet(this::randomMove);</span>
+<span class="nc" id="L45">        return nextAiMove().orElseGet(this::randomMove);</span>
     }
 
     /**
@@ -60,15 +60,15 @@ public abstract class Ghost extends Unit {
      * @param moveInterval      The base interval of movement.
      * @param intervalVariation The variation of the interval.
      */
-<span class="fc" id="L63">    protected Ghost(Map&lt;Direction, Sprite&gt; spriteMap, int moveInterval, int intervalVariation) {</span>
-<span class="fc" id="L64">        this.sprites = spriteMap;</span>
-<span class="fc" id="L65">        this.intervalVariation = intervalVariation;</span>
-<span class="fc" id="L66">        this.moveInterval = moveInterval;</span>
-<span class="fc" id="L67">    }</span>
+<span class="nc" id="L63">    protected Ghost(Map&lt;Direction, Sprite&gt; spriteMap, int moveInterval, int intervalVariation) {</span>
+<span class="nc" id="L64">        this.sprites = spriteMap;</span>
+<span class="nc" id="L65">        this.intervalVariation = intervalVariation;</span>
+<span class="nc" id="L66">        this.moveInterval = moveInterval;</span>
+<span class="nc" id="L67">    }</span>
 
     @Override
     public Sprite getSprite() {
-<span class="fc" id="L71">        return sprites.get(getDirection());</span>
+<span class="nc" id="L71">        return sprites.get(getDirection());</span>
     }
 
     /**
@@ -77,7 +77,7 @@ public abstract class Ghost extends Unit {
      * @return The suggested delay between moves in milliseconds.
      */
     public long getInterval() {
-<span class="fc" id="L80">        return this.moveInterval + new Random().nextInt(this.intervalVariation);</span>
+<span class="nc" id="L80">        return this.moveInterval + new Random().nextInt(this.intervalVariation);</span>
     }
 
     /**

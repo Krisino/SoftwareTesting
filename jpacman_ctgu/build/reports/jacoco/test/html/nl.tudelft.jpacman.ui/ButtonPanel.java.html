@@ -11,7 +11,7 @@ import javax.swing.JPanel;
  *
  * @author Jeroen Roosen 
  */
-<span class="pc bpc" id="L14" title="1 of 2 branches missed.">class ButtonPanel extends JPanel {</span>
+<span class="nc bnc" id="L14" title="All 2 branches missed.">class ButtonPanel extends JPanel {</span>
 
     /**
      * Default serialisation ID.
@@ -24,18 +24,18 @@ import javax.swing.JPanel;
      * @param parent The parent frame, used to return window focus.
      */
     ButtonPanel(final Map&lt;String, Action&gt; buttons, final JFrame parent) {
-<span class="fc" id="L27">        super();</span>
-<span class="pc bpc" id="L28" title="2 of 4 branches missed.">        assert buttons != null;</span>
-<span class="pc bpc" id="L29" title="2 of 4 branches missed.">        assert parent != null;</span>
+<span class="nc" id="L27">        super();</span>
+<span class="nc bnc" id="L28" title="All 4 branches missed.">        assert buttons != null;</span>
+<span class="nc bnc" id="L29" title="All 4 branches missed.">        assert parent != null;</span>
 
-<span class="fc bfc" id="L31" title="All 2 branches covered.">        for (final String caption : buttons.keySet()) {</span>
-<span class="fc" id="L32">            JButton button = new JButton(caption);</span>
-<span class="fc" id="L33">            button.addActionListener(e -&gt; {</span>
+<span class="nc bnc" id="L31" title="All 2 branches missed.">        for (final String caption : buttons.keySet()) {</span>
+<span class="nc" id="L32">            JButton button = new JButton(caption);</span>
+<span class="nc" id="L33">            button.addActionListener(e -&gt; {</span>
 <span class="nc" id="L34">                buttons.get(caption).doAction();</span>
 <span class="nc" id="L35">                parent.requestFocusInWindow();</span>
 <span class="nc" id="L36">            });</span>
-<span class="fc" id="L37">            add(button);</span>
-<span class="fc" id="L38">        }</span>
-<span class="fc" id="L39">    }</span>
+<span class="nc" id="L37">            add(button);</span>
+<span class="nc" id="L38">        }</span>
+<span class="nc" id="L39">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

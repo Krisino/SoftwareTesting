@@ -9,7 +9,7 @@ import nl.tudelft.jpacman.sprite.Sprite;
  *
  * @author Jeroen Roosen 
  */
-<span class="pc bpc" id="L12" title="1 of 2 branches missed.">public class BoardFactory {</span>
+<span class="nc bnc" id="L12" title="All 2 branches missed.">public class BoardFactory {</span>
 
     /**
      * The sprite store providing the sprites for the background.
@@ -23,9 +23,9 @@ import nl.tudelft.jpacman.sprite.Sprite;
      * @param spriteStore
      *            The sprite store providing the sprites for the background.
      */
-<span class="fc" id="L26">    public BoardFactory(PacManSprites spriteStore) {</span>
-<span class="fc" id="L27">        this.sprites = spriteStore;</span>
-<span class="fc" id="L28">    }</span>
+<span class="nc" id="L26">    public BoardFactory(PacManSprites spriteStore) {</span>
+<span class="nc" id="L27">        this.sprites = spriteStore;</span>
+<span class="nc" id="L28">    }</span>
 
     /**
      * Creates a new board from a grid of cells and connects it.
@@ -36,25 +36,25 @@ import nl.tudelft.jpacman.sprite.Sprite;
      * @return A new board, wrapping a grid of connected cells.
      */
     public Board createBoard(Square[][] grid) {
-<span class="pc bpc" id="L39" title="2 of 4 branches missed.">        assert grid != null;</span>
+<span class="nc bnc" id="L39" title="All 4 branches missed.">        assert grid != null;</span>
 
-<span class="fc" id="L41">        Board board = new Board(grid);</span>
+<span class="nc" id="L41">        Board board = new Board(grid);</span>
 
-<span class="fc" id="L43">        int width = board.getWidth();</span>
-<span class="fc" id="L44">        int height = board.getHeight();</span>
-<span class="fc bfc" id="L45" title="All 2 branches covered.">        for (int x = 0; x &lt; width; x++) {</span>
-<span class="fc bfc" id="L46" title="All 2 branches covered.">            for (int y = 0; y &lt; height; y++) {</span>
-<span class="fc" id="L47">                Square square = grid[x][y];</span>
-<span class="fc bfc" id="L48" title="All 2 branches covered.">                for (Direction dir : Direction.values()) {</span>
-<span class="fc" id="L49">                    int dirX = (width + x + dir.getDeltaX()) % width;</span>
-<span class="fc" id="L50">                    int dirY = (height + y + dir.getDeltaY()) % height;</span>
-<span class="fc" id="L51">                    Square neighbour = grid[dirX][dirY];</span>
-<span class="fc" id="L52">                    square.link(neighbour, dir);</span>
+<span class="nc" id="L43">        int width = board.getWidth();</span>
+<span class="nc" id="L44">        int height = board.getHeight();</span>
+<span class="nc bnc" id="L45" title="All 2 branches missed.">        for (int x = 0; x &lt; width; x++) {</span>
+<span class="nc bnc" id="L46" title="All 2 branches missed.">            for (int y = 0; y &lt; height; y++) {</span>
+<span class="nc" id="L47">                Square square = grid[x][y];</span>
+<span class="nc bnc" id="L48" title="All 2 branches missed.">                for (Direction dir : Direction.values()) {</span>
+<span class="nc" id="L49">                    int dirX = (width + x + dir.getDeltaX()) % width;</span>
+<span class="nc" id="L50">                    int dirY = (height + y + dir.getDeltaY()) % height;</span>
+<span class="nc" id="L51">                    Square neighbour = grid[dirX][dirY];</span>
+<span class="nc" id="L52">                    square.link(neighbour, dir);</span>
                 }
             }
         }
 
-<span class="fc" id="L57">        return board;</span>
+<span class="nc" id="L57">        return board;</span>
     }
 
     /**
@@ -63,7 +63,7 @@ import nl.tudelft.jpacman.sprite.Sprite;
      * @return A new square that can be occupied by any unit.
      */
     public Square createGround() {
-<span class="fc" id="L66">        return new Ground(sprites.getGroundSprite());</span>
+<span class="nc" id="L66">        return new Ground(sprites.getGroundSprite());</span>
     }
 
     /**
@@ -72,7 +72,7 @@ import nl.tudelft.jpacman.sprite.Sprite;
      * @return A new square that cannot be occupied by any unit.
      */
     public Square createWall() {
-<span class="fc" id="L75">        return new Wall(sprites.getWallSprite());</span>
+<span class="nc" id="L75">        return new Wall(sprites.getWallSprite());</span>
     }
 
     /**
@@ -93,18 +93,18 @@ import nl.tudelft.jpacman.sprite.Sprite;
          * @param sprite
          *            The background for the square.
          */
-<span class="fc" id="L96">        Wall(Sprite sprite) {</span>
-<span class="fc" id="L97">            this.background = sprite;</span>
-<span class="fc" id="L98">        }</span>
+<span class="nc" id="L96">        Wall(Sprite sprite) {</span>
+<span class="nc" id="L97">            this.background = sprite;</span>
+<span class="nc" id="L98">        }</span>
 
         @Override
         public boolean isAccessibleTo(Unit unit) {
-<span class="fc" id="L102">            return false;</span>
+<span class="nc" id="L102">            return false;</span>
         }
 
         @Override
         public Sprite getSprite() {
-<span class="fc" id="L107">            return background;</span>
+<span class="nc" id="L107">            return background;</span>
         }
     }
 
@@ -126,18 +126,18 @@ import nl.tudelft.jpacman.sprite.Sprite;
          * @param sprite
          *            The background for the square.
          */
-<span class="fc" id="L129">        Ground(Sprite sprite) {</span>
-<span class="fc" id="L130">            this.background = sprite;</span>
-<span class="fc" id="L131">        }</span>
+<span class="nc" id="L129">        Ground(Sprite sprite) {</span>
+<span class="nc" id="L130">            this.background = sprite;</span>
+<span class="nc" id="L131">        }</span>
 
         @Override
         public boolean isAccessibleTo(Unit unit) {
-<span class="fc" id="L135">            return true;</span>
+<span class="nc" id="L135">            return true;</span>
         }
 
         @Override
         public Sprite getSprite() {
-<span class="fc" id="L140">            return background;</span>
+<span class="nc" id="L140">            return background;</span>
         }
     }
 }

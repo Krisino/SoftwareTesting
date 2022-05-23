@@ -22,9 +22,9 @@ public class GameFactory {
      * @param playerFactory
      *            The factory providing the player objects.
      */
-<span class="fc" id="L25">    public GameFactory(PlayerFactory playerFactory) {</span>
-<span class="fc" id="L26">        this.playerFactory = playerFactory;</span>
-<span class="fc" id="L27">    }</span>
+<span class="nc" id="L25">    public GameFactory(PlayerFactory playerFactory) {</span>
+<span class="nc" id="L26">        this.playerFactory = playerFactory;</span>
+<span class="nc" id="L27">    }</span>
 
     /**
      * Creates a game for a single level with one player.
@@ -36,7 +36,7 @@ public class GameFactory {
      * @return A new single player game.
      */
     public Game createSinglePlayerGame(Level level, PointCalculator pointCalculator) {
-<span class="fc" id="L39">        return new SinglePlayerGame(playerFactory.createPacMan(), level, pointCalculator);</span>
+<span class="nc" id="L39">        return new SinglePlayerGame(playerFactory.createPacMan(), level, pointCalculator);</span>
     }
 
     /**

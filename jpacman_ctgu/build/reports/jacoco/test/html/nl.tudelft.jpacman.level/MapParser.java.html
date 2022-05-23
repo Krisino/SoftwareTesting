@@ -39,10 +39,10 @@ public class MapParser {
      * @param boardFactory
      *            The factory providing the Square objects and the board.
      */
-<span class="fc" id="L42">    public MapParser(LevelFactory levelFactory, BoardFactory boardFactory) {</span>
-<span class="fc" id="L43">        this.levelCreator = levelFactory;</span>
-<span class="fc" id="L44">        this.boardCreator = boardFactory;</span>
-<span class="fc" id="L45">    }</span>
+<span class="nc" id="L42">    public MapParser(LevelFactory levelFactory, BoardFactory boardFactory) {</span>
+<span class="nc" id="L43">        this.levelCreator = levelFactory;</span>
+<span class="nc" id="L44">        this.boardCreator = boardFactory;</span>
+<span class="nc" id="L45">    }</span>
 
     /**
      * Parses the text representation of the board into an actual level.
@@ -62,29 +62,29 @@ public class MapParser {
      * @return The level as represented by this text.
      */
     public Level parseMap(char[][] map) {
-<span class="fc" id="L65">        int width = map.length;</span>
-<span class="fc" id="L66">        int height = map[0].length;</span>
+<span class="nc" id="L65">        int width = map.length;</span>
+<span class="nc" id="L66">        int height = map[0].length;</span>
 
-<span class="fc" id="L68">        Square[][] grid = new Square[width][height];</span>
+<span class="nc" id="L68">        Square[][] grid = new Square[width][height];</span>
 
-<span class="fc" id="L70">        List&lt;Ghost&gt; ghosts = new ArrayList&lt;&gt;();</span>
-<span class="fc" id="L71">        List&lt;Square&gt; startPositions = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L70">        List&lt;Ghost&gt; ghosts = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L71">        List&lt;Square&gt; startPositions = new ArrayList&lt;&gt;();</span>
 
-<span class="fc" id="L73">        makeGrid(map, width, height, grid, ghosts, startPositions);</span>
+<span class="nc" id="L73">        makeGrid(map, width, height, grid, ghosts, startPositions);</span>
 
-<span class="fc" id="L75">        Board board = boardCreator.createBoard(grid);</span>
-<span class="fc" id="L76">        return levelCreator.createLevel(board, ghosts, startPositions);</span>
+<span class="nc" id="L75">        Board board = boardCreator.createBoard(grid);</span>
+<span class="nc" id="L76">        return levelCreator.createLevel(board, ghosts, startPositions);</span>
     }
 
     private void makeGrid(char[][] map, int width, int height,
                           Square[][] grid, List&lt;Ghost&gt; ghosts, List&lt;Square&gt; startPositions) {
-<span class="fc bfc" id="L81" title="All 2 branches covered.">        for (int x = 0; x &lt; width; x++) {</span>
-<span class="fc bfc" id="L82" title="All 2 branches covered.">            for (int y = 0; y &lt; height; y++) {</span>
-<span class="fc" id="L83">                char c = map[x][y];</span>
-<span class="fc" id="L84">                addSquare(grid, ghosts, startPositions, x, y, c);</span>
+<span class="nc bnc" id="L81" title="All 2 branches missed.">        for (int x = 0; x &lt; width; x++) {</span>
+<span class="nc bnc" id="L82" title="All 2 branches missed.">            for (int y = 0; y &lt; height; y++) {</span>
+<span class="nc" id="L83">                char c = map[x][y];</span>
+<span class="nc" id="L84">                addSquare(grid, ghosts, startPositions, x, y, c);</span>
             }
         }
-<span class="fc" id="L87">    }</span>
+<span class="nc" id="L87">    }</span>
 
     /**
      * Adds a square to the grid based on a given character. These
@@ -108,32 +108,32 @@ public class MapParser {
      */
     protected void addSquare(Square[][] grid, List&lt;Ghost&gt; ghosts,
                              List&lt;Square&gt; startPositions, int x, int y, char c) {
-<span class="pc bpc" id="L111" title="1 of 6 branches missed.">        switch (c) {</span>
+<span class="nc bnc" id="L111" title="All 6 branches missed.">        switch (c) {</span>
             case ' ':
-<span class="fc" id="L113">                grid[x][y] = boardCreator.createGround();</span>
-<span class="fc" id="L114">                break;</span>
+<span class="nc" id="L113">                grid[x][y] = boardCreator.createGround();</span>
+<span class="nc" id="L114">                break;</span>
             case '#':
-<span class="fc" id="L116">                grid[x][y] = boardCreator.createWall();</span>
-<span class="fc" id="L117">                break;</span>
+<span class="nc" id="L116">                grid[x][y] = boardCreator.createWall();</span>
+<span class="nc" id="L117">                break;</span>
             case '.':
-<span class="fc" id="L119">                Square pelletSquare = boardCreator.createGround();</span>
-<span class="fc" id="L120">                grid[x][y] = pelletSquare;</span>
-<span class="fc" id="L121">                levelCreator.createPellet().occupy(pelletSquare);</span>
-<span class="fc" id="L122">                break;</span>
+<span class="nc" id="L119">                Square pelletSquare = boardCreator.createGround();</span>
+<span class="nc" id="L120">                grid[x][y] = pelletSquare;</span>
+<span class="nc" id="L121">                levelCreator.createPellet().occupy(pelletSquare);</span>
+<span class="nc" id="L122">                break;</span>
             case 'G':
-<span class="fc" id="L124">                Square ghostSquare = makeGhostSquare(ghosts, levelCreator.createGhost());</span>
-<span class="fc" id="L125">                grid[x][y] = ghostSquare;</span>
-<span class="fc" id="L126">                break;</span>
+<span class="nc" id="L124">                Square ghostSquare = makeGhostSquare(ghosts, levelCreator.createGhost());</span>
+<span class="nc" id="L125">                grid[x][y] = ghostSquare;</span>
+<span class="nc" id="L126">                break;</span>
             case 'P':
-<span class="fc" id="L128">                Square playerSquare = boardCreator.createGround();</span>
-<span class="fc" id="L129">                grid[x][y] = playerSquare;</span>
-<span class="fc" id="L130">                startPositions.add(playerSquare);</span>
-<span class="fc" id="L131">                break;</span>
+<span class="nc" id="L128">                Square playerSquare = boardCreator.createGround();</span>
+<span class="nc" id="L129">                grid[x][y] = playerSquare;</span>
+<span class="nc" id="L130">                startPositions.add(playerSquare);</span>
+<span class="nc" id="L131">                break;</span>
             default:
 <span class="nc" id="L133">                throw new PacmanConfigurationException(&quot;Invalid character at &quot;</span>
                     + x + &quot;,&quot; + y + &quot;: &quot; + c);
         }
-<span class="fc" id="L136">    }</span>
+<span class="nc" id="L136">    }</span>
 
     /**
      * creates a Square with the specified ghost on it
@@ -144,10 +144,10 @@ public class MapParser {
      * @return a square with the ghost on it.
      */
     protected Square makeGhostSquare(List&lt;Ghost&gt; ghosts, Ghost ghost) {
-<span class="fc" id="L147">        Square ghostSquare = boardCreator.createGround();</span>
-<span class="fc" id="L148">        ghosts.add(ghost);</span>
-<span class="fc" id="L149">        ghost.occupy(ghostSquare);</span>
-<span class="fc" id="L150">        return ghostSquare;</span>
+<span class="nc" id="L147">        Square ghostSquare = boardCreator.createGround();</span>
+<span class="nc" id="L148">        ghosts.add(ghost);</span>
+<span class="nc" id="L149">        ghost.occupy(ghostSquare);</span>
+<span class="nc" id="L150">        return ghostSquare;</span>
     }
 
     /**
@@ -163,18 +163,18 @@ public class MapParser {
      */
     public Level parseMap(List&lt;String&gt; text) {
 
-<span class="fc" id="L166">        checkMapFormat(text);</span>
+<span class="nc" id="L166">        checkMapFormat(text);</span>
 
-<span class="fc" id="L168">        int height = text.size();</span>
-<span class="fc" id="L169">        int width = text.get(0).length();</span>
+<span class="nc" id="L168">        int height = text.size();</span>
+<span class="nc" id="L169">        int width = text.get(0).length();</span>
 
-<span class="fc" id="L171">        char[][] map = new char[width][height];</span>
-<span class="fc bfc" id="L172" title="All 2 branches covered.">        for (int x = 0; x &lt; width; x++) {</span>
-<span class="fc bfc" id="L173" title="All 2 branches covered.">            for (int y = 0; y &lt; height; y++) {</span>
-<span class="fc" id="L174">                map[x][y] = text.get(y).charAt(x);</span>
+<span class="nc" id="L171">        char[][] map = new char[width][height];</span>
+<span class="nc bnc" id="L172" title="All 2 branches missed.">        for (int x = 0; x &lt; width; x++) {</span>
+<span class="nc bnc" id="L173" title="All 2 branches missed.">            for (int y = 0; y &lt; height; y++) {</span>
+<span class="nc" id="L174">                map[x][y] = text.get(y).charAt(x);</span>
             }
         }
-<span class="fc" id="L177">        return parseMap(map);</span>
+<span class="nc" id="L177">        return parseMap(map);</span>
     }
 
     /**
@@ -183,30 +183,30 @@ public class MapParser {
      * @throws PacmanConfigurationException if map is not OK.
      */
     private void checkMapFormat(List&lt;String&gt; text) {
-<span class="pc bpc" id="L186" title="1 of 2 branches missed.">        if (text == null) {</span>
+<span class="nc bnc" id="L186" title="All 2 branches missed.">        if (text == null) {</span>
 <span class="nc" id="L187">            throw new PacmanConfigurationException(</span>
                 &quot;Input text cannot be null.&quot;);
         }
 
-<span class="pc bpc" id="L191" title="1 of 2 branches missed.">        if (text.isEmpty()) {</span>
+<span class="nc bnc" id="L191" title="All 2 branches missed.">        if (text.isEmpty()) {</span>
 <span class="nc" id="L192">            throw new PacmanConfigurationException(</span>
                 &quot;Input text must consist of at least 1 row.&quot;);
         }
 
-<span class="fc" id="L196">        int width = text.get(0).length();</span>
+<span class="nc" id="L196">        int width = text.get(0).length();</span>
 
-<span class="pc bpc" id="L198" title="1 of 2 branches missed.">        if (width == 0) {</span>
+<span class="nc bnc" id="L198" title="All 2 branches missed.">        if (width == 0) {</span>
 <span class="nc" id="L199">            throw new PacmanConfigurationException(</span>
                 &quot;Input text lines cannot be empty.&quot;);
         }
 
-<span class="fc bfc" id="L203" title="All 2 branches covered.">        for (String line : text) {</span>
-<span class="pc bpc" id="L204" title="1 of 2 branches missed.">            if (line.length() != width) {</span>
+<span class="nc bnc" id="L203" title="All 2 branches missed.">        for (String line : text) {</span>
+<span class="nc bnc" id="L204" title="All 2 branches missed.">            if (line.length() != width) {</span>
 <span class="nc" id="L205">                throw new PacmanConfigurationException(</span>
                     &quot;Input text lines are not of equal width.&quot;);
             }
-<span class="fc" id="L208">        }</span>
-<span class="fc" id="L209">    }</span>
+<span class="nc" id="L208">        }</span>
+<span class="nc" id="L209">    }</span>
 
     /**
      * Parses the provided input stream as a character stream and passes it
@@ -219,13 +219,13 @@ public class MapParser {
      *             when the source could not be read.
      */
     public Level parseMap(InputStream source) throws IOException {
-<span class="fc" id="L222">        try (BufferedReader reader = new BufferedReader(new InputStreamReader(</span>
+<span class="nc" id="L222">        try (BufferedReader reader = new BufferedReader(new InputStreamReader(</span>
             source, &quot;UTF-8&quot;))) {
-<span class="fc" id="L224">            List&lt;String&gt; lines = new ArrayList&lt;&gt;();</span>
-<span class="fc bfc" id="L225" title="All 2 branches covered.">            while (reader.ready()) {</span>
-<span class="fc" id="L226">                lines.add(reader.readLine());</span>
+<span class="nc" id="L224">            List&lt;String&gt; lines = new ArrayList&lt;&gt;();</span>
+<span class="nc bnc" id="L225" title="All 2 branches missed.">            while (reader.ready()) {</span>
+<span class="nc" id="L226">                lines.add(reader.readLine());</span>
             }
-<span class="fc" id="L228">            return parseMap(lines);</span>
+<span class="nc" id="L228">            return parseMap(lines);</span>
         }
     }
 
@@ -244,11 +244,11 @@ public class MapParser {
         justification = &quot;try with resources always cleans up / false positive in java 11&quot;
     )
     public Level parseMap(String mapName) throws IOException {
-<span class="fc" id="L247">        try (InputStream boardStream = MapParser.class.getResourceAsStream(mapName)) {</span>
-<span class="pc bpc" id="L248" title="1 of 2 branches missed.">            if (boardStream == null) {</span>
+<span class="nc" id="L247">        try (InputStream boardStream = MapParser.class.getResourceAsStream(mapName)) {</span>
+<span class="nc bnc" id="L248" title="All 2 branches missed.">            if (boardStream == null) {</span>
 <span class="nc" id="L249">                throw new PacmanConfigurationException(&quot;Could not get resource for: &quot; + mapName);</span>
             }
-<span class="fc" id="L251">            return parseMap(boardStream);</span>
+<span class="nc" id="L251">            return parseMap(boardStream);</span>
         }
     }
 

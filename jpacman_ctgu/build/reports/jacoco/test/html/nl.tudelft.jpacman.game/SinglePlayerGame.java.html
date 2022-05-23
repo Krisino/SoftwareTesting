@@ -13,7 +13,7 @@ import nl.tudelft.jpacman.points.PointCalculator;
  *
  * @author Jeroen Roosen 
  */
-<span class="pc bpc" id="L16" title="1 of 2 branches missed.">public class SinglePlayerGame extends Game {</span>
+<span class="nc bnc" id="L16" title="All 2 branches missed.">public class SinglePlayerGame extends Game {</span>
 
     /**
      * The player of this game.
@@ -36,24 +36,24 @@ import nl.tudelft.jpacman.points.PointCalculator;
      *            The way to calculate points upon collisions.
      */
     protected SinglePlayerGame(Player player, Level level, PointCalculator pointCalculator) {
-<span class="fc" id="L39">        super(pointCalculator);</span>
+<span class="nc" id="L39">        super(pointCalculator);</span>
 
-<span class="pc bpc" id="L41" title="2 of 4 branches missed.">        assert player != null;</span>
-<span class="pc bpc" id="L42" title="2 of 4 branches missed.">        assert level != null;</span>
+<span class="nc bnc" id="L41" title="All 4 branches missed.">        assert player != null;</span>
+<span class="nc bnc" id="L42" title="All 4 branches missed.">        assert level != null;</span>
 
-<span class="fc" id="L44">        this.player = player;</span>
-<span class="fc" id="L45">        this.level = level;</span>
-<span class="fc" id="L46">        this.level.registerPlayer(player);</span>
-<span class="fc" id="L47">    }</span>
+<span class="nc" id="L44">        this.player = player;</span>
+<span class="nc" id="L45">        this.level = level;</span>
+<span class="nc" id="L46">        this.level.registerPlayer(player);</span>
+<span class="nc" id="L47">    }</span>
 
     @Override
     public List&lt;Player&gt; getPlayers() {
-<span class="fc" id="L51">        return ImmutableList.of(player);</span>
+<span class="nc" id="L51">        return ImmutableList.of(player);</span>
     }
 
     @Override
     public Level getLevel() {
-<span class="fc" id="L56">        return level;</span>
+<span class="nc" id="L56">        return level;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

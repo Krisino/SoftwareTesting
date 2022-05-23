@@ -64,12 +64,12 @@ public class LevelFactory {
      */
     public LevelFactory(PacManSprites spriteStore,
                         GhostFactory ghostFactory,
-<span class="fc" id="L67">                        PointCalculator pointCalculator) {</span>
-<span class="fc" id="L68">        this.sprites = spriteStore;</span>
-<span class="fc" id="L69">        this.ghostIndex = -1;</span>
-<span class="fc" id="L70">        this.ghostFact = ghostFactory;</span>
-<span class="fc" id="L71">        this.pointCalculator = pointCalculator;</span>
-<span class="fc" id="L72">    }</span>
+<span class="nc" id="L67">                        PointCalculator pointCalculator) {</span>
+<span class="nc" id="L68">        this.sprites = spriteStore;</span>
+<span class="nc" id="L69">        this.ghostIndex = -1;</span>
+<span class="nc" id="L70">        this.ghostFact = ghostFactory;</span>
+<span class="nc" id="L71">        this.pointCalculator = pointCalculator;</span>
+<span class="nc" id="L72">    }</span>
 
     /**
      * Creates a new level from the provided data.
@@ -85,9 +85,9 @@ public class LevelFactory {
     public Level createLevel(Board board, List&lt;Ghost&gt; ghosts, List&lt;Square&gt; startPositions) {
 
         // We'll adopt the simple collision map for now.
-<span class="fc" id="L88">        CollisionMap collisionMap = new PlayerCollisions(pointCalculator);</span>
+<span class="nc" id="L88">        CollisionMap collisionMap = new PlayerCollisions(pointCalculator);</span>
 
-<span class="fc" id="L90">        return new Level(board, ghosts, startPositions, collisionMap);</span>
+<span class="nc" id="L90">        return new Level(board, ghosts, startPositions, collisionMap);</span>
     }
 
     /**
@@ -96,11 +96,11 @@ public class LevelFactory {
      * @return The new ghost.
      */
     Ghost createGhost() {
-<span class="fc" id="L99">        ghostIndex++;</span>
-<span class="fc" id="L100">        ghostIndex %= GHOSTS;</span>
-<span class="pc bpc" id="L101" title="4 of 5 branches missed.">        switch (ghostIndex) {</span>
+<span class="nc" id="L99">        ghostIndex++;</span>
+<span class="nc" id="L100">        ghostIndex %= GHOSTS;</span>
+<span class="nc bnc" id="L101" title="All 5 branches missed.">        switch (ghostIndex) {</span>
             case BLINKY:
-<span class="fc" id="L103">                return ghostFact.createBlinky();</span>
+<span class="nc" id="L103">                return ghostFact.createBlinky();</span>
             case INKY:
 <span class="nc" id="L105">                return ghostFact.createInky();</span>
             case PINKY:
@@ -118,7 +118,7 @@ public class LevelFactory {
      * @return The new pellet.
      */
     public Pellet createPellet() {
-<span class="fc" id="L121">        return new Pellet(PELLET_VALUE, sprites.getPelletSprite());</span>
+<span class="nc" id="L121">        return new Pellet(PELLET_VALUE, sprites.getPelletSprite());</span>
     }
 
     /**

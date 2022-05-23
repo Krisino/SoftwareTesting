@@ -6,7 +6,7 @@
  *
  * @author Jeroen Roosen 
  */
-<span class="pc bpc" id="L9" title="1 of 2 branches missed.">public class Board {</span>
+<span class="nc bnc" id="L9" title="All 2 branches missed.">public class Board {</span>
 
     /**
      * The grid of squares with board[x][y] being the square at column x, row y.
@@ -21,25 +21,25 @@
      *            x, row y.
      */
     @SuppressWarnings(&quot;PMD.ArrayIsStoredDirectly&quot;)
-<span class="fc" id="L24">    Board(Square[][] grid) {</span>
-<span class="pc bpc" id="L25" title="2 of 4 branches missed.">        assert grid != null;</span>
-<span class="fc" id="L26">        this.board = grid;</span>
-<span class="pc bpc" id="L27" title="2 of 4 branches missed.">        assert invariant() : &quot;Initial grid cannot contain null squares&quot;;</span>
-<span class="fc" id="L28">    }</span>
+<span class="nc" id="L24">    Board(Square[][] grid) {</span>
+<span class="nc bnc" id="L25" title="All 4 branches missed.">        assert grid != null;</span>
+<span class="nc" id="L26">        this.board = grid;</span>
+<span class="nc bnc" id="L27" title="All 4 branches missed.">        assert invariant() : &quot;Initial grid cannot contain null squares&quot;;</span>
+<span class="nc" id="L28">    }</span>
 
     /**
      * Whatever happens, the squares on the board can't be null.
      * @return false if any square on the board is null.
      */
     protected final boolean invariant() {
-<span class="fc bfc" id="L35" title="All 2 branches covered.">        for (Square[] row : board) {</span>
-<span class="fc bfc" id="L36" title="All 2 branches covered.">            for (Square square : row) {</span>
-<span class="pc bpc" id="L37" title="1 of 2 branches missed.">                if (square == null) {</span>
+<span class="nc bnc" id="L35" title="All 2 branches missed.">        for (Square[] row : board) {</span>
+<span class="nc bnc" id="L36" title="All 2 branches missed.">            for (Square square : row) {</span>
+<span class="nc bnc" id="L37" title="All 2 branches missed.">                if (square == null) {</span>
 <span class="nc" id="L38">                    return false;</span>
                 }
             }
         }
-<span class="fc" id="L42">        return true;</span>
+<span class="nc" id="L42">        return true;</span>
     }
 
     /**
@@ -48,7 +48,7 @@
      * @return The width of this board.
      */
     public int getWidth() {
-<span class="fc" id="L51">        return board.length;</span>
+<span class="nc" id="L51">        return board.length;</span>
     }
 
     /**
@@ -57,7 +57,7 @@
      * @return The height of this board.
      */
     public int getHeight() {
-<span class="fc" id="L60">        return board[0].length;</span>
+<span class="nc" id="L60">        return board[0].length;</span>
     }
 
     /**
@@ -73,10 +73,10 @@
      * @return The square at the given &lt;code&gt;x,y&lt;/code&gt; position (never null).
      */
     public Square squareAt(int x, int y) {
-<span class="pc bpc" id="L76" title="2 of 4 branches missed.">        assert withinBorders(x, y);</span>
-<span class="fc" id="L77">        Square result = board[x][y];</span>
-<span class="pc bpc" id="L78" title="2 of 4 branches missed.">        assert result != null : &quot;Follows from invariant.&quot;;</span>
-<span class="fc" id="L79">        return result;</span>
+<span class="nc bnc" id="L76" title="All 4 branches missed.">        assert withinBorders(x, y);</span>
+<span class="nc" id="L77">        Square result = board[x][y];</span>
+<span class="nc bnc" id="L78" title="All 4 branches missed.">        assert result != null : &quot;Follows from invariant.&quot;;</span>
+<span class="nc" id="L79">        return result;</span>
     }
 
     /**
@@ -89,7 +89,7 @@
      * @return &lt;code&gt;true&lt;/code&gt; iff the position is on this board.
      */
     public boolean withinBorders(int x, int y) {
-<span class="pc bpc" id="L92" title="4 of 8 branches missed.">        return x &gt;= 0 &amp;&amp; x &lt; getWidth() &amp;&amp; y &gt;= 0 &amp;&amp; y &lt; getHeight();</span>
+<span class="nc bnc" id="L92" title="All 8 branches missed.">        return x &gt;= 0 &amp;&amp; x &lt; getWidth() &amp;&amp; y &gt;= 0 &amp;&amp; y &lt; getHeight();</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

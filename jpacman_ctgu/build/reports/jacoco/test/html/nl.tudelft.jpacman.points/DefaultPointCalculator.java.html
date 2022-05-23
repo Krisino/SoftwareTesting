@@ -9,21 +9,21 @@ import nl.tudelft.jpacman.npc.Ghost;
  * A simple, minimalistic point calculator just
  * adding points for each pellet consumed.
  */
-<span class="fc" id="L12">public class DefaultPointCalculator implements PointCalculator {</span>
+<span class="nc" id="L12">public class DefaultPointCalculator implements PointCalculator {</span>
 
     @Override
     public void collidedWithAGhost(Player player, Ghost ghost) {
         // no points for colliding with a ghost
-<span class="fc" id="L17">    }</span>
+<span class="nc" id="L17">    }</span>
 
     @Override
     public void consumedAPellet(Player player, Pellet pellet) {
-<span class="fc" id="L21">        player.addPoints(pellet.getValue());</span>
-<span class="fc" id="L22">    }</span>
+<span class="nc" id="L21">        player.addPoints(pellet.getValue());</span>
+<span class="nc" id="L22">    }</span>
 
     @Override
     public void pacmanMoved(Player player, Direction direction) {
         // no points for moving
-<span class="fc" id="L27">    }</span>
+<span class="nc" id="L27">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

@@ -28,7 +28,7 @@ import nl.tudelft.jpacman.ui.ScorePanel.ScoreFormatter;
  * @author Jeroen Roosen 
  *
  */
-<span class="pc bpc" id="L31" title="1 of 2 branches missed.">public class PacManUI extends JFrame {</span>
+<span class="nc bnc" id="L31" title="All 2 branches missed.">public class PacManUI extends JFrame {</span>
 
     /**
      * Default serialisation UID.
@@ -68,50 +68,50 @@ import nl.tudelft.jpacman.ui.ScorePanel.ScoreFormatter;
     public PacManUI(final Game game, final Map&lt;String, Action&gt; buttons,
                     final Map&lt;Integer, Action&gt; keyMappings,
                     ScoreFormatter scoreFormatter) {
-<span class="fc" id="L71">        super(&quot;JPacman 2022&quot;);</span>
-<span class="pc bpc" id="L72" title="2 of 4 branches missed.">        assert game != null;</span>
-<span class="pc bpc" id="L73" title="2 of 4 branches missed.">        assert buttons != null;</span>
-<span class="pc bpc" id="L74" title="2 of 4 branches missed.">        assert keyMappings != null;</span>
+<span class="nc" id="L71">        super(&quot;JPacman 2022&quot;);</span>
+<span class="nc bnc" id="L72" title="All 4 branches missed.">        assert game != null;</span>
+<span class="nc bnc" id="L73" title="All 4 branches missed.">        assert buttons != null;</span>
+<span class="nc bnc" id="L74" title="All 4 branches missed.">        assert keyMappings != null;</span>
 
-<span class="fc" id="L76">        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);</span>
+<span class="nc" id="L76">        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);</span>
 
-<span class="fc" id="L78">        PacKeyListener keys = new PacKeyListener(keyMappings);</span>
-<span class="fc" id="L79">        addKeyListener(keys);</span>
+<span class="nc" id="L78">        PacKeyListener keys = new PacKeyListener(keyMappings);</span>
+<span class="nc" id="L79">        addKeyListener(keys);</span>
 
-<span class="fc" id="L81">        JPanel buttonPanel = new ButtonPanel(buttons, this);</span>
+<span class="nc" id="L81">        JPanel buttonPanel = new ButtonPanel(buttons, this);</span>
 
-<span class="fc" id="L83">        scorePanel = new ScorePanel(game.getPlayers());</span>
-<span class="pc bpc" id="L84" title="1 of 2 branches missed.">        if (scoreFormatter != null) {</span>
+<span class="nc" id="L83">        scorePanel = new ScorePanel(game.getPlayers());</span>
+<span class="nc bnc" id="L84" title="All 2 branches missed.">        if (scoreFormatter != null) {</span>
 <span class="nc" id="L85">            scorePanel.setScoreFormatter(scoreFormatter);</span>
         }
 
-<span class="fc" id="L88">        boardPanel = new BoardPanel(game);</span>
+<span class="nc" id="L88">        boardPanel = new BoardPanel(game);</span>
 
-<span class="fc" id="L90">        Container contentPanel = getContentPane();</span>
-<span class="fc" id="L91">        contentPanel.setLayout(new BorderLayout());</span>
-<span class="fc" id="L92">        contentPanel.add(buttonPanel, BorderLayout.SOUTH);</span>
-<span class="fc" id="L93">        contentPanel.add(scorePanel, BorderLayout.NORTH);</span>
-<span class="fc" id="L94">        contentPanel.add(boardPanel, BorderLayout.CENTER);</span>
+<span class="nc" id="L90">        Container contentPanel = getContentPane();</span>
+<span class="nc" id="L91">        contentPanel.setLayout(new BorderLayout());</span>
+<span class="nc" id="L92">        contentPanel.add(buttonPanel, BorderLayout.SOUTH);</span>
+<span class="nc" id="L93">        contentPanel.add(scorePanel, BorderLayout.NORTH);</span>
+<span class="nc" id="L94">        contentPanel.add(boardPanel, BorderLayout.CENTER);</span>
 
-<span class="fc" id="L96">        pack();</span>
-<span class="fc" id="L97">    }</span>
+<span class="nc" id="L96">        pack();</span>
+<span class="nc" id="L97">    }</span>
 
     /**
      * Starts the &quot;engine&quot;, the thread that redraws the interface at set
      * intervals.
      */
     public void start() {
-<span class="fc" id="L104">        setVisible(true);</span>
-<span class="fc" id="L105">        ScheduledExecutorService service = Executors.newSingleThreadScheduledExecutor();</span>
-<span class="fc" id="L106">        service.scheduleAtFixedRate(this::nextFrame, 0, FRAME_INTERVAL, TimeUnit.MILLISECONDS);</span>
-<span class="fc" id="L107">    }</span>
+<span class="nc" id="L104">        setVisible(true);</span>
+<span class="nc" id="L105">        ScheduledExecutorService service = Executors.newSingleThreadScheduledExecutor();</span>
+<span class="nc" id="L106">        service.scheduleAtFixedRate(this::nextFrame, 0, FRAME_INTERVAL, TimeUnit.MILLISECONDS);</span>
+<span class="nc" id="L107">    }</span>
 
     /**
      * Draws the next frame, i.e. refreshes the scores and game.
      */
     private void nextFrame() {
-<span class="fc" id="L113">        boardPanel.repaint();</span>
-<span class="fc" id="L114">        scorePanel.refresh();</span>
-<span class="fc" id="L115">    }</span>
+<span class="nc" id="L113">        boardPanel.repaint();</span>
+<span class="nc" id="L114">        scorePanel.refresh();</span>
+<span class="nc" id="L115">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

@@ -9,7 +9,7 @@ import java.util.Map;
  *
  * @author Jeroen Roosen 
  */
-<span class="pc bpc" id="L12" title="1 of 2 branches missed.">class PacKeyListener implements KeyListener {</span>
+<span class="nc bnc" id="L12" title="All 2 branches missed.">class PacKeyListener implements KeyListener {</span>
 
     /**
      * The mappings of keyCode to action.
@@ -20,10 +20,10 @@ import java.util.Map;
      * Create a new key listener based on a set of keyCode-action pairs.
      * @param keyMappings The mappings of keyCode to action.
      */
-<span class="fc" id="L23">    PacKeyListener(Map&lt;Integer, Action&gt; keyMappings) {</span>
-<span class="pc bpc" id="L24" title="2 of 4 branches missed.">        assert keyMappings != null;</span>
-<span class="fc" id="L25">        this.mappings = keyMappings;</span>
-<span class="fc" id="L26">    }</span>
+<span class="nc" id="L23">    PacKeyListener(Map&lt;Integer, Action&gt; keyMappings) {</span>
+<span class="nc bnc" id="L24" title="All 4 branches missed.">        assert keyMappings != null;</span>
+<span class="nc" id="L25">        this.mappings = keyMappings;</span>
+<span class="nc" id="L26">    }</span>
 
     @Override
     public void keyPressed(KeyEvent event) {

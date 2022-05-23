@@ -20,9 +20,9 @@ public class PlayerFactory {
      * @param spriteStore
      *            The sprite store containing the Pac-Man sprites.
      */
-<span class="fc" id="L23">    public PlayerFactory(PacManSprites spriteStore) {</span>
-<span class="fc" id="L24">        this.sprites = spriteStore;</span>
-<span class="fc" id="L25">    }</span>
+<span class="nc" id="L23">    public PlayerFactory(PacManSprites spriteStore) {</span>
+<span class="nc" id="L24">        this.sprites = spriteStore;</span>
+<span class="nc" id="L25">    }</span>
 
     /**
      * Creates a new player with the classic Pac-Man sprites.
@@ -30,7 +30,7 @@ public class PlayerFactory {
      * @return A new player.
      */
     public Player createPacMan() {
-<span class="fc" id="L33">        return new Player(getSprites().getPacmanSprites(), getSprites().getPacManDeathAnimation());</span>
+<span class="nc" id="L33">        return new Player(getSprites().getPacmanSprites(), getSprites().getPacManDeathAnimation());</span>
     }
 
     /**
@@ -39,7 +39,7 @@ public class PlayerFactory {
      * @return The sprites for the player created.
      */
     protected PacManSprites getSprites() {
-<span class="fc" id="L42">        return sprites;</span>
+<span class="nc" id="L42">        return sprites;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>
